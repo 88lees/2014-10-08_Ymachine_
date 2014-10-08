@@ -41,3 +41,5 @@ exports.boardremove = 'delete from customer_board where id=?';
 exports.boardremove2 = 'delete from old_customer where id=?';
 exports.boardremove3 = 'delete from notice where id=?';
 
+exports.getlist_cate = 'select *from test_category_level1 ORDER by category1_code,category2_code';
+

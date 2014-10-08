@@ -176,6 +176,12 @@ router1.post('/updateboard3', board.update3);
 
 
 
+/*채영범 코딩*/
+router1.post('/getlist_cate', board.getlist_cate);
+
+
+/**/
+
 router1.post('/deleteboard', board.delete);
 router1.post('/deleteboard2', board.delete2);
 router1.post('/deleteboard3', board.delete3);

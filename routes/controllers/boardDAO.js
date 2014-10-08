@@ -42,6 +42,26 @@ exports.chk = function (req, res) {
         }
     })
 };
+
+exports.getlist_cate = function (req, res) {                                                       // 신제품소개 서브 메뉴 시작
+    var sending = [];
+
+    c.query(query.getlist_cate, null).on('result', function (res) {
+        res.on('row', function (row) {
+            sending.push(row);
+        });
+    }).on('end', function () {
+        var obj = {sending: sending};
+        if (sending[0] != null) {
+            res.send(200, obj);
+        } else {
+            res.send(500, obj);
+        }
+    });
+};                                                                                               // 신제품소개 서브 메뉴 끝
+
+
+
 exports.list = function (req, res) {
     var sending = [];
     console.log('this is get list000');

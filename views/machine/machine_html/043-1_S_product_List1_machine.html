@@ -34,77 +34,121 @@
 
     <script>
         var qq = [];
+        var items = [];
+        var num = 1;
+        var pagedItem = [];
+        var items3 = [];
+        var num3 = 1;
+        var pagedItem3 = [];
+        var items2 = [];
+        var num2 = 1;
+        var pagedItem2 = [];
+        var cate_list = [];
+        var url;
+        var getValue;
+        var category1_code;
+        var category2_code;
+
+        var code1;
+        var code2;
+
+        url = window.location;
+
+        if (String(url).indexOf("?") > 0) {
+            getValue = String(url).split('?');
+            //alert(getValue);
+            getValue = getValue[1].split('&');
+            //alert(getValue);
+            category1_code = getValue[0].split('='); //키와 값분리
+            // alert(category1_code);
+            category2_code = getValue[1].split('='); //키와 값분리
+            //alert(category1_code);
+            category1_code = category1_code[1];
+            category2_code = category2_code[1];
+        }
+
+
         $(document).ready(function () {
 
-            var items = [];
-            var num = 1;
-            var pagedItem = [];
-            $.post('/getlist3', function (data) {      // 컨텐츠 중앙창
-                items = data.sending;
-                divide(num);
-                pagenation(items.length / 5);
-            });
-
-            var items2 = [];
-            var num2 = 1;
-            var pagedItem2 = [];
-            $.post('/getlist2', function (data) {       //서브 대메뉴
+            $.post('/getlist2', function (data) {       //서브
+                console.log(data);
                 items2 = data.sending;
                 divide2(num2);
                 pagenation(items2.length / 5);
             });
 
-            var items3 = [];
-            var num3 = 1;
-            var pagedItem3 = [];
+            $.post('/getlist3', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창
+                items = data.sending;
+                console.log(items);
+                divide(num);
+                pagenation(items.length / 5);
+            });
+
+            $.post('/getlist_cate', function (data) {      // 컨텐츠
+                console.log(data);
+                cate_list = data.sending;
+                make_CateList();
+                pagenation(items.length / 5);
+            });
 
 
+            var make_CateList = function () {
 
+                for (var i = 0; i < cate_list.length; i++) {
+                    if (cate_list[i].category2_code == "00") {
+                        if (cate_list[i + 1].category2_code == "00") {
+                            $("#liston2").append("<dd  class='active'><span class='glyphicon glyphicon-ok'><a href=" + 'product_List11?category1_code=' + cate_list[i].category1_code + '&category2_code=' + cate_list[i].category2_code + ">" + cate_list[i].category_name + "</a></dd>")
+                        } else {
+                            $("#liston2").append("<dd class='active'>" + "<span class='glyphicon glyphicon-ok'>" + cate_list[i].category_name + "</span>" + "</dd>");
+                        }
+                    }
+                    else {
+                        //alert( cate_list[i].category2_code);
+                        $("#liston2").append("<dd  class='sub-menu'><a href=" + 'product_List11?category1_code=' + cate_list[i].category1_code + '&category2_code=' + cate_list[i].category2_code + ">" + cate_list[i].category_name + "</a></dd>")
+                    }
 
-
-            /*
-             var items3 = [];
-             var num3 = 1;
-             var pagedItem3 = [];
-             $.post('/getlist4', function (data) {       //서브 대메뉴
-             items3 = data.sending;
-             divide2(num3);
-             pagenation(items3.length / 5);
-             });*/
-
+                }
+            };
+            /*           <dd class="active">
+             <a href="#"><span class="glyphicon glyphicon-ok"></span> CNC선반</a>
+             </dd>
+             <dd class="sub-menu">
+             <a href="043-1_S_product_View2.html"> 수평형 CNC 선반</a>
+             </dd>*/
 
             var divide2 = function (num2) {
                 var n = 0;
                 for (var i = (num2 - 1) * 5; i < num2 * 10; i++) {
                     if (items2[i] != null) {
                         pagedItem2[n] = items2[i];
-                        $("#liston2").append("<dd>" + "<span class='glyphicon glyphicon-ok'>" + pagedItem2[i].category_name + "</span>" + "</dd>");
+                        //$("#liston2").append("<dd>" + "<span class='glyphicon glyphicon-ok'>" + pagedItem2[i].category_name + "</span>" + "</dd>");
 
                         $.post('/getsub', {id10: i + 1}, function (data) {       //서브 대메뉴
-
-                            console.log("현재qq:"+qq);
                             items3 = data.sending;
                             qq = items3[0].count;
-                            console.log("count");
-                            console.log(qq);
-                            alert(qq);
+
 
                         });
                         for (var j = 0; j < qq; j++) {
                             if (items2[j] != null) {
                                 pagedItem2[j] = items2[j];
-
-                                $("#liston2").append("<dd>" + pagedItem2[j].category_name + "</dd>");
-                            } } }
+                                // $("#liston2").append("<dd>" +"11"+ "</dd>");
+                            }
+                        }
+                    }
                     else {
                         pagedItem2[n] = null;
                     }
-                    n++;  } };
+                    n++;
+                }
+            };
 
 
 //
             var divide = function (num) {
                 var n = 0;
+                console.log("");
+                console.log(items);
                 for (var i = (num - 1) * 5; i < num * 5; i++) {
                     if (items[i] != null) {
                         pagedItem[n] = items[i];
@@ -116,19 +160,18 @@
                 }
                 $('#liston').empty();
                 $(pagedItem).each(function (i) {
-                    var id = this.id;
-                    var title = this.title;
 
-                    if (this.id != null) {
+                    console.log(pagedItem[i]);
+                    if (this.name != null) {
 
                         $("#liston").append("<div class='media'>" +
-                                "<a href='/product1_View11' class='pull-left'>" + "<img src='img/new_01.png' class='img-thumbnail' alt='' style='width:128px; height:100px;'/>" + "</a>" +
+                                "<a href=" + '/product1_View11?category1_code=' + pagedItem[i].category1_code + '&category2_code=' + pagedItem[i].category2_code + " " + "class='pull-left'>" + "<img src='img/new_01.png' class='img-thumbnail' alt='' style='width:128px; height:100px;'/>" + "</a>" +
                                 "<div class='media-body'>" +
-                                "<h4 class='media-heading'>" + this.title + "</h4>" + this.content +
+                                "<h4 class='media-heading'>" + this.name + "</h4>" + this.company +
                                 "</div>" +
                                 "</div>");
                     }
-                });
+                })
 
             }
         });
@@ -158,7 +201,6 @@
     </div>
 
 </div>
-
 
 <div class="container cont01">
     <div class="row clearfix">
