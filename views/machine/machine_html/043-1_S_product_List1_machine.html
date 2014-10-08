@@ -48,7 +48,6 @@
         var getValue;
         var category1_code;
         var category2_code;
-
         var code1;
         var code2;
 
@@ -70,19 +69,19 @@
 
         $(document).ready(function () {
 
-            $.post('/getlist2', function (data) {       //서브
+/*            $.post('/getlist2', function (data) {       //서브
                 console.log(data);
                 items2 = data.sending;
                 divide2(num2);
                 pagenation(items2.length / 5);
-            });
+            });*/
 
-            $.post('/getlist3', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창
+/*            $.post('/getlist3', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창
                 items = data.sending;
                 console.log(items);
                 divide(num);
                 pagenation(items.length / 5);
-            });
+            });*/
 
             $.post('/getlist_cate', function (data) {      // 컨텐츠
                 console.log(data);
