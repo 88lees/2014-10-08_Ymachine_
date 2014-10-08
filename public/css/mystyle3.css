@@ -1,0 +1,187 @@
+@CHARSET "utf-8";
+
+@IMPORT url("./respond.js");
+
+@
+-webkit-viewport {
+	width: device-width;
+}
+
+@
+-moz-viewport {
+	width: device-width;
+}
+
+@
+-ms-viewport {
+	width: device-width;
+}
+
+@
+-o-viewport {
+	width: device-width;
+}
+
+@
+viewport {
+	width: device-width;
+}
+
+body {
+	font-family: nanumgothic;
+	font-size: 14px;
+}
+
+/*미디어 쿼리  */
+@media all and (max-width:1024px) {
+	.nav.navbar-nav li {
+		font-size: 10px;
+	}
+}
+
+.nav.navbar-nav li {
+	font-size: 13px;
+}
+
+.col-md-4 { .
+	padding: 0px 0px 0px 0px;
+}
+
+.col-md-6 { .
+	padding: 0px 0px 0px 0px;
+}
+
+.panel { .
+	width: 95%;
+}
+
+/*최상단 */
+.mylogo {
+	
+}
+
+.mybg {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+.mybgimg {
+	width: 100%;
+	margin: 0 auto;
+	background-color: #c4d2d5
+}
+
+.navbar.navbar-default.navbar-inverse.navbar-fixed-top {
+	margin: 0px 0px 0px 0px;
+	font-size: 12px;
+}
+
+/*breadcrumb 메뉴 */
+.divider {
+	margin-left: 5px;
+	padding-left: 5px;
+	margin-right: 5px;
+	padding-right: 5px;
+}
+
+/* panel */
+.mycontent {
+	padding-left: 70px;
+	padding-right: 70px;
+}
+
+.panel-title {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: left;
+	line-height: 120%;
+}
+
+.panel-primary {
+	border-radius: 5px 5px 0px 0px;
+	border-bottom: 5px solid #357fbe;
+}
+
+.panel-body {
+	padding: 0px 0px 0px 0px;
+}
+
+.panel-footer.mycenter {
+	background-color: #f6f2e6;
+}
+
+.panel-title.mycenter {
+	font-size: 15px;
+	text-align: left;
+	line-height: 220%;
+	padding-left: 10px;
+	color: #a0a0a0;
+}
+
+.panel-body.mycenter {
+	border-bottom: 1px solid #aaaaaa;
+	padding-left: 15px;
+	border-top: 1px solid #aaaaaa;
+	font-size: 80%;
+	line-height: 200%;
+	font-weight: bold;
+	padding-bottom: 6px;
+}
+
+.panel-footer {
+	background-color: #d5e8ee;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 200%;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.btn-group.btn-group-justified .btn-group {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.mybtn {
+	margin: 5px 5px 5px 5px;
+	font-size: 20px;
+	height: 75px;
+}
+
+/* 하단 */
+address {
+	font-family: sans-serif;
+	padding-top: 5px;
+	text-align: center;
+	font-size: 11px;
+	line-height: 150%;
+}
+
+h3 {
+	text-align: left;
+}
+
+.myfootermenu {
+	background-color: #ffffff;
+	font-size: 12px;
+	text-align: left;
+	font-family: sans-serif;
+}
+
+.myfooter .breadcrumb {
+	background-color: #ffffff;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.breadcrumb>li+li:before {
+	content: none;
+}
+
+.myfootermenu a:VISITED {
+	
+}
+
+.myfootermenu li a:hover {
+	text-decoration: none;
+}

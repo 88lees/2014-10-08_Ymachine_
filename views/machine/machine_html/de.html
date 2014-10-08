@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap 3, from LayoutIt!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+    <!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+    <!--script src="js/less-1.3.3.min.js"></script-->
+    <!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/customerqna_view.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="scripts/design/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"
+          href="img/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/design/bootstrap.min.js"></script>
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            var title = document.getElementById('usedInputTitle');
+            var writer = document.getElementById('usedInputname');
+            var company = document.getElementById('usedInputCompany');
+            var contact = document.getElementById('usedInputCall');
+            var email = document.getElementById('usedInputEmail');
+            var content = document.getElementById('usedInputContent');
+            var id2 = document.getElementById('id');
+            var url = window.location.href;
+            var id = url.indexOf('?');
+            var send = url.slice(id + 4);
+            $.post('/getboard', {id: send}, function (data) {
+                var message = data.sending[0];
+                id2.value = send;
+                title.value = message.title;
+                writer.value = message.writer;
+                company.value = message.company;
+                contact.value = message.contact;
+                email.value = message.email;
+                content.value = message.content;
+                var up = [];
+                existExtArray = message.file.split('*');
+                for (var i=0; i < existExtArray.length-1; i++) {
+                    $("#download").append("<button type='submit' id='up"+i+"' name='up'>"+i+"</button>");
+                    up[i] = document.getElementById('up'+i);
+                    up[i].value = existExtArray[i];
+                }
+            });
+        });
+
+    </script>
+    <script>
+        function btn_click(){
+            $(document).ready(function () {
+                var url = window.location.href;
+                var id = url.indexOf('?');
+                var send = url.slice(id + 4);
+                $.post('/deleteboard', {id: send}, function (data) {
+                    window.location.href="/customer_list11";
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+<!--</div>-->
+<div class="navbar-sub">
+
+    <div class="container">
+        <div class="col-md-12 column">
+
+            <ul class="list-inline pull-right">
+                <li><a href="/les21">홈 &gt;</a></li>
+                <li><a href="/write21">고객문의&gt; </a></li>
+                <li><a href="/list">리스트&gt; </a></li>
+                <li><a href="#">상세보기</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+<div class="banner" style="background-color: #c4d1d6">
+    <img src="img/lease-img/banner.png" alt="금융리스배너" class="center-block">
+</div>
+<div class="container cont01">
+    <div class="row clearfix">
+
+        <div class="col-md-offset-1 col-md-10 column col-md-offset-1">
+            <div class="row clearfix">
+                <div class="container" style="width: 850px;">
+                    <div class="col-md-12 column">
+                        <h3>
+                            <a href="#"><img src="img/menu_icon_01.png"> 상세보기</a>
+                        </h3><br>
+
+                        <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <div class="form-group">
+                                        <label for="usedInputTitle">제목</label>
+
+                                        <div class="row clearfix"></div>
+                                        <input type="text" class="form-control" id="usedInputTitle"
+                                               autofocus="autofocus" readonly="readonly" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="col-md-6 column visible-md visible-lg myhalf">
+                                    <div class="form-group form-inline">
+                                        <label for="usedInputname">작성자</label>
+
+                                        <div class="row clearfix"></div>
+                                        <input type="text" class="form-control myhalfinput" id="usedInputname"
+                                               readonly="readonly" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="usedInputCompany">업체명</label>
+
+                                        <div class="row clearfix"></div>
+                                        <input type="text" class="form-control myhalfinput" id="usedInputCompany"
+                                               readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 column visible-md visible-lg myhalf">
+                                    <div class="form-group">
+                                        <label for="usedInputCall">연락처</label>
+
+                                        <div class="row clearfix"></div>
+                                        <input type="tel" class="form-control myhalfinput" id="usedInputCall"
+                                               readonly="readonly" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="usedInputEmail">이메일</label>
+                                        <div class="row clearfix"></div>
+                                        <input type="email" class="form-control myhalfinput"
+                                               id="usedInputEmail" readonly="readonly" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 column visible-sm visible-xs">
+                                    <div class="form-group form-inline">
+                                        <label for="usedInputname">작성자</label>
+
+                                        <div class="row clearfix"></div>
+                                        <input type="text" class="form-control" id=""
+                                               readonly="readonly" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="usedInputCompany">업체명</label>
+
+                                        <div class="row clearfix"></div>
+                                        <input type="text" class="form-control" id=""
+                                               readonly="readonly" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="usedInputCall">연락처</label>
+
+                                        <div class="row clearfix"></div>
+                                        <input type="tel" class="form-control" id=""
+                                               readonly="readonly" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="usedInputEmail">이메일</label>
+                                        <div class="row clearfix"></div>
+                                        <input type="email" class="form-control" id="usedInputEmail"
+                                               readonly="readonly" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <div class="form-group">
+                                        <label for="usedInputContent">내용</label>
+
+                                        <div class="row clearfix"></div>
+                                        <textarea rows="10" cols="" class="form-control"
+                                                  id="usedInputContent" readonly="readonly"></textarea>
+                                    </div>
+                                    <!--<div class="form-group">
+                                        <label for="usedInputFilelist">파일리스트</label>
+                                        <div class="row clearfix"></div>
+
+                                        <div class="myfilelist">
+                                            <input type="file" id="usedInputFile">
+                                            <ul class="list-unstyled">
+                                                <li>aaaa.jpg</li>
+                                                <li>bbbb.jpg</li>
+                                                <li>cccc.png</li>
+                                            </ul>
+                                        </div>
+                                    </div>-->
+                                    <div class="form-group" style="width: 900px;">
+                                        <label for="usedInputFilelist">첨부파일</label>
+
+                                        <div class="row clearfix"></div>
+
+                                        <div class="myfilelist">
+                                            <ul class="list-unstyled">
+                                                &nbsp;
+                                                <div class="thumb_box">
+                                                    <!--<div id="addedFormListDiv"></div>-->
+                                                    <form action="/download"  method="post" >
+                                                        <div id="download"></div>
+                                                    </form>
+                                                </div>
+                                                &nbsp;
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                <form role="form" action="/modifyboard" method="get">
+                                <a href="/customer_list11" style="margin-left: 612px;"><button type="button" class="btn btn-primary">리스트</button></a>
+                                <button type="submit" class="btn btn-danger">수정</button>
+                                <button type="button" class="btn btn-danger" onclick="btn_click()">삭제</button>
+                                <input type="hidden"  name="id" id="id">
+                                </form>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<div class="col-md-1 column navbar-fixed-bottom visible-lg visible-md">
+    <div class="panel panel-default quick">
+        &lt;!&ndash; Default panel contents &ndash;&gt;
+        <div class="panel-heading">
+            공작기계
+        </div>
+        &lt;!&ndash; List group &ndash;&gt;
+        <ul class="list-group">
+            <a href="/product_List11"><li class="list-group-item">
+                CNC자동선반
+            </li></a>
+            <a href="/product_List11"><li class="list-group-item">
+                양두밀링
+            </li></a>
+            <a href="/product_List11"><li class="list-group-item">
+                머시닝센터
+            </li></a>
+            <a href="/product_List12"><li class="list-group-item">
+                중고기계목록
+            </li></a>
+            <a href="/product_List11"><li class="list-group-item">
+                CNC선반
+            </li></a>
+            <a href="/product_List12"><li class="list-group-item">
+                추천매물
+            </li></a>
+            <a href="/product_List12"><li class="list-group-item">
+                현장 실 사용매물
+            </li></a>
+        </ul>
+        <div class="panel-heading">
+            금융리스
+        </div>
+        &lt;!&ndash; List group &ndash;&gt;
+        <ul class="list-group">
+            <a href="/business21"><li class="list-group-item">
+                리스금융
+            </li></a>
+            <a href="/business22"><li class="list-group-item">
+                할부금융
+            </li></a>
+            <a href="/business24"><li class="list-group-item">
+                금융컨설팅
+            </li></a>
+            <a href="/business23"><li class="list-group-item">
+                개인운전자금
+            </li></a>
+        </ul>
+    </div>
+</div>
+-->
+
+
+</body>
+</html>

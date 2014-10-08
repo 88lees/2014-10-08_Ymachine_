@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Bootstrap 3, from LayoutIt!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+<!--script src="js/less-1.3.3.min.js"></script-->
+<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/common.css" rel="stylesheet">
+<link href="css/customerqna_view.css" rel="stylesheet">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<![endif]-->
+
+<!-- Fav and touch icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="img/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="img/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="img/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed"
+	href="img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="img/favicon.png">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            var title = document.getElementById('usedInputTitle');
+            var writer = document.getElementById('usedInputname');
+            var company = document.getElementById('usedInputCompany');
+            var contact = document.getElementById('usedInputCall');
+            var email = document.getElementById('usedInputEmail');
+            var content = document.getElementById('usedInputContent');
+            var url = window.location.href;
+            var id = url.indexOf('?');
+            var send = url.slice(id + 4);
+            $.post('/getboard', {id: send}, function (data) {
+                var message = data.sending[0];
+                title.value = message.title;
+                writer.value = message.writer;
+                company.value = message.company;
+                contact.value = message.contact;
+                email.value = message.email;
+                content.value = message.content;
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+	<!--</div>-->
+	<div class="navbar-sub">
+
+		<div class="container">
+			<div class="col-md-12 column">
+
+				<ul class="list-inline pull-right">
+					<li><a href="#">홈 &gt;</a></li>
+					<li><a href="#">고객문의&gt; </a></li>
+					<li><a href="#">상세보기</a></li>
+				</ul>
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<!--container-->
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<nav class="navbar navbar-default navbar-inverse navbar-fixed-top"
+					role="navigation">
+
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+
+						<ul class="nav navbar-nav navbar-right">
+										<li>
+											<a href="#">성시원님 환영합니다</a>
+										</li>
+										<li>
+											<a href="043-1_S_main1.html">공작기계</a>
+										</li>
+										<li>
+											<a href="043-1_S_main2.html">금융리스</a>
+										</li>
+										<li>
+											<a href="043-1_S_sitemap1.html">Site map</a>
+										</li>
+										<li>
+											<a href="#">Log-out</a>
+										</li>
+									</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<div class="container cont01">
+		<div class="row clearfix">
+
+			<div class="col-md-offset-1 col-md-10 column col-md-offset-1">
+				<h3>
+					<a href="#"><img src="img/menu_icon_01.png"> 중고장비문의</a>
+				</h3>
+
+				<div class="row clearfix">
+					<div class="container">
+						<div class="col-md-12 column">
+							<form role="form">
+								<div class="row clearfix">
+									<div class="col-md-12 column">
+										<div class="form-group">
+											<label for="usedInputTitle">제목</label>
+
+											<div class="row clearfix"></div>
+											<input type="text" class="form-control" id="usedInputTitle"
+												autofocus="autofocus" readonly="readonly" />
+										</div>
+									</div>
+								</div>
+
+								<div class="row clearfix">
+									<div class="col-md-6 column visible-md visible-lg myhalf">
+										<div class="form-group form-inline">
+											<label for="usedInputname">작성자</label>
+
+											<div class="row clearfix"></div>
+											<input type="text" class="form-control myhalfinput" id="usedInputname"
+												readonly="readonly" />
+										</div>
+										<div class="form-group ">
+											<label for="usedInputCompany">업체명</label>
+
+											<div class="row clearfix"></div>
+											<input type="text" class="form-control myhalfinput" id="usedInputCompany"
+												readonly="readonly" />
+										</div>
+									</div>
+									<div class="col-md-6 column visible-md visible-lg myhalf">
+										<div class="form-group">
+											<label for="usedInputCall">연락처</label>
+
+											<div class="row clearfix"></div>
+											<input type="tel" class="form-control myhalfinput" id="usedInputCall"
+												readonly="readonly" />
+										</div>
+
+										<div class="form-group">
+											<label for="usedInputEmail">이메일</label>
+											<div class="row clearfix"></div>
+											<input type="email" class="form-control myhalfinput"
+												id="usedInputEmail" readonly="readonly" />
+										</div>
+									</div>
+
+									<div class="col-md-12 column visible-sm visible-xs">
+										<div class="form-group form-inline">
+											<label for="usedInputname">작성자</label>
+
+											<div class="row clearfix"></div>
+											<input type="text" class="form-control" id=""
+												readonly="readonly" />
+										</div>
+										<div class="form-group ">
+											<label for="usedInputCompany">업체명</label>
+
+											<div class="row clearfix"></div>
+											<input type="text" class="form-control" id=""
+												readonly="readonly" />
+										</div>
+										<div class="form-group">
+											<label for="usedInputCall">연락처</label>
+
+											<div class="row clearfix"></div>
+											<input type="tel" class="form-control" id=""
+												readonly="readonly" />
+										</div>
+
+										<div class="form-group">
+											<label for="usedInputEmail">이메일</label>
+											<div class="row clearfix"></div>
+											<input type="email" class="form-control" id="usedInputEmail"
+												readonly="readonly" />
+										</div>
+									</div>
+								</div>
+
+								<div class="row clearfix">
+									<div class="col-md-12 column">
+										<div class="form-group">
+											<label for="usedInputContent">내용</label>
+
+											<div class="row clearfix"></div>
+											<textarea rows="10" cols="" class="form-control"
+												id="usedInputContent" readonly="readonly"></textarea>
+										</div>
+										<div class="form-group">
+											<label for="usedInputFilelist">파일리스트</label>
+											<div class="row clearfix"></div>
+
+											<div class="myfilelist">
+												<input type="file" id="usedInputFile">
+												<ul class="list-unstyled">
+													<li>aaaa.jpg</li>
+													<li>bbbb.jpg</li>
+													<li>cccc.png</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								
+								<div class="mywidth">
+									<div class="pull-right">
+										<a href="#"><button type="button" class="btn btn-danger">삭제</button></a>
+										<a href="043-1_S_customer_List1.html"><button type="button" class="btn btn-primary">목록</button></a>
+
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+</body>
+</html>

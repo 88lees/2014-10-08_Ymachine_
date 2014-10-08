@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+
+    <link href="../../styles/main.css" rel="stylesheet">
+    <link href="../../styles/wacommon.css" rel="stylesheet">
+    <link href="../../styles/masion.css" rel="stylesheet">
+
+    <link href="../../styles/introduction.css" rel="stylesheet">
+    <script type="text/javascript" src="scripts/design/scripts.js"></script>
+    <script src="scripts/design/respond.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="scripts/pagenation.js"></script>
+    <script src="scripts/design/bootstrap.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            var items = [];
+            var num = 1;
+            var pagedItem = [];
+            $.post('/getlist', function (data) {
+                items = data.sending;
+                divide(num);
+                pagenation(items.length / 5);
+            });
+
+            var divide = function (num) {
+                var n = 0;
+                for (var i = (num - 1) * 5; i < num * 5; i++) {
+                    if (items[i] != null) {
+                        pagedItem[n] = items[i];
+                    } else {
+                        pagedItem[n] = null;
+                    }
+                    n++;
+                }
+                $('#liston').empty();
+                $(pagedItem).each(function (i) {
+                    var id = this.id;
+                    var title = this.title;
+                    if (this.id != null) {
+                        $("#liston").append("<tr><th class='tstyle'><a href='/detailboard?id=" + id + "'>" + this.title + "</a></th><td class='tstyle'>" + this.company + "</td><td class='tstyle'>" + this.writer + "</td></tr>");
+                    }
+                });
+
+            };
+            var pagenation = function (paged) {
+                $('#page-selection').bootpag({
+                    total: paged + 1,
+                    page: 1,
+                    maxVisible: 10
+                }).on('page', function (event, num) {
+                    divide(num);
+                });
+            };
+        });
+    </script>
+
+
+
+
+</head>
+<body>
+
+
+
+
+<div class="col-xs-12 column line-bottom">
+    <div class="row clearfix">
+        <h3 class="pull-left"> 견적문의 </h3>
+        <ul class="list-unstyled list-inline pull-right pager01">
+            <li>
+                <a href="#"> HOME ></a>
+            </li>
+            <li class="active">
+                <a href="#"> 견적문의 ></a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<div class="row clearfix"><br></div>
+
+<div class="row clearfix">
+    <div class="col-md-offset-1 col-md-10 column col-md-offset-1">
+
+        <table class="table table-bordered table-condensed">
+            <thead>
+            <tr>
+                <th>제목</th>
+                <th>업체명</th>
+                <th>작성자</th>
+            </tr>
+            </thead>
+            <tbody id="liston">
+            </tbody>
+        </table>
+        <td colspan="2">
+            <div class="pagination pull-right">
+                <div id="page-selection"></div>
+            </div>
+        </td>
+    </div>
+</div>
+
+
+</body>
+</html>

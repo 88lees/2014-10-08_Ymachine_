@@ -1,0 +1,147 @@
+@CHARSET "EUC-KR";
+
+body {
+	font-family: nanumgothic;
+	font-size: 17px;
+}
+
+article,aside,hgroup,header,footer,figure,figcaption,nav,section {
+	display: block;
+}
+
+article {
+	font-family: 굴림, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+/*최상단 */
+.mylogo {
+	margin-right: 30px;
+}
+
+.mytop-inner li.mylogo a:hover {
+	border-bottom: none;
+}
+
+.mytop {
+	border-bottom: 4px solid rgb(249, 197, 5);
+	margin-bottom: 30px;
+}
+
+.mytop-inner {
+	background-color: white;
+	color: black;
+	font-family: nanumgothic;
+	font-size: 20px;
+	text-align: justify;
+	position: relative;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.mytop-inner a:VISITED {
+	color: black;
+}
+
+.mytop-inner li a:hover {
+	text-decoration: none;
+	padding-bottom: 3px;
+	border-bottom: 2px solid rgb(249, 197, 5);
+}
+
+.myimgslide {
+	margin-bottom: 30px;
+}
+
+/*breadcrumb 메뉴 */
+.breadcrumb>li+li:before {
+	content: none;
+}
+
+.divider {
+	margin-left: 10px;
+	padding-left: 10px;
+	margin-right: 10px;
+	padding-right: 10px;
+}
+
+/* panel */
+.mycontent {
+	padding-left: 70px;
+	padding-right: 70px;
+}
+
+.panel-default {
+	border-color: #ffca08;
+}
+
+.mypanel {
+	border-radius: 25px 25px 0px 0px;
+}
+
+.panel-default>.panel-heading {
+	filter: none;
+}
+
+.panel-heading.mypanel-heading {
+	border-radius: 25px 25px 0px 0px;
+	-ms-border-radius: 25px 25px 0px 0px;
+	background: -webkit-linear-gradient(top, #ffca08 0%, #ffd70f 100%);
+	background: linear-gradient(to bottom, #ffca08 0%, #ffd70f 100%);
+	text-align: center;
+}
+
+.btn-group.btn-group-justified .btn-group {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.panel-title {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.mybtn {
+	margin: 5px 5px 5px 5px;
+	font-size: 20px;
+	height: 75px;
+}
+
+/* 하단 */
+address {
+	font-family: sans-serif;
+	padding-top: 5px;
+	text-align: center;
+	font-size: 11px;
+	line-height: 150%;
+	font-weight: bold;
+}
+
+.myfooter {
+	border-top: 2px solid rgb(249, 197, 5);
+}
+
+.myfootermenu {
+	background-color: #dbdbdb;
+	font-size: 17px;
+	text-align: center;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+.myfooter .breadcrumb {
+	background-color: #dbdbdb;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.myfootermenu a:VISITED {
+	color: black;
+}
+
+.myfootermenu li a:hover {
+	text-decoration: none;
+}

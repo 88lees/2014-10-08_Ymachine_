@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap 3, from LayoutIt!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+    <!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+    <!--script src="js/less-1.3.3.min.js"></script-->
+    <!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/notice_write.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+
+
+    <script>
+        function btn_click() {
+            var url = window.location.href;
+            var id = url.indexOf('?');
+            var send = url.slice(id + 4);
+            $.post('/deleteboard3', {id: send}, function (data) {
+                var message = data.sending[0];
+            });
+        }
+        ;
+    </script>
+
+    <script>
+        function btn_click1() {
+            var url = window.location.href;
+            var id = url.indexOf('?');
+            var send = url.slice(id + 4);
+            window.location.href = "/notice_write111?id=" + send;
+
+        }
+        ;
+    </script>
+
+</head>
+
+<body>
+
+
+<div class="navbar-sub">
+    <div class="container">
+        <div class="col-md-12 column">
+            <ul class="list-inline pull-right">
+                <li>
+                    <a href="/main1">홈 &gt;</a>
+                </li>
+                <li>
+                    <a href="/notice_List11">공지사항 &gt;  </a>
+                </li>
+                <li>
+                    <a href="/notice_view11">공지사항 상세보기</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container cont01">
+    <div class="row clearfix tb01">
+        <div class="col-md-12 column">
+            <h3><img src="img/menu_icon_01.png"> 공지사항</h3>
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <th> 제목</th>
+                    <td>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control input-sm" id="title" readonly="readonly"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 내용</th>
+                    <td>
+                        <div class="col-sm-12">
+                            <textarea class="form-control" id="content" rows="10" readonly="readonly"></textarea>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 첨부파일</th>
+                    <td>
+                        <div class="form-group">
+                            <label for="usedInputFilelist">첨부파일</label>
+
+                            <div class="row clearfix"></div>
+
+                            <div class="myfilelist">
+                                <ul class="list-unstyled">
+                                    &nbsp;
+                                    <div class="thumb_box">
+                                        <!--<div id="addedFormListDiv"></div>-->
+                                        <form action="/download" method="post">
+                                            <div id="download"></div>
+                                        </form>
+                                    </div>
+                                    &nbsp;
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--카테고리 편집 버튼-->
+    <div class="row clearfix tb01">
+        <div class="col-md-12 column">
+            <div class="btn-group pull-right">
+                <a href="/notice_List11" id="liston">
+                    <button type="button" class="btn btn-write">
+                        목록
+                    </button>
+                </a>
+
+                <form role="form" id="" action="/kang" method="post">
+                    <button type="button" onclick="btn_click1()" class="btn btn-write">
+                        수정
+                    </button>
+                </form>
+
+                <h1></h1>
+
+                <form role="form" id="" action="/deleteboard3" method="post">
+                    <button type="submit" class="btn btn-write">
+                        삭제
+                    </button>
+                    <input type="hidden" class="form-control input-sm" name="id" id="id"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var title = document.getElementById('title');
+        var content = document.getElementById('content');
+        var id2 = document.getElementById('id');
+        var url = window.location.href;
+        var id = url.indexOf('?');
+        var send = url.slice(id + 4);
+        $.post('/getboard3', {id: send}, function (data) {
+            var message = data.sending[0];
+            title.value = message.title;
+            content.value = message.content;
+            id2.value = message.id;
+            var up = [];
+            existExtArray = message.file.split('*');
+            for (var i=0; i < existExtArray.length-1; i++) {
+                $("#download").append("<button type='submit' id='up"+i+"' name='up'>"+i+"</button>");
+                up[i] = document.getElementById('up'+i);
+                up[i].value = existExtArray[i];
+            }
+        });
+
+
+    });
+</script>
+
+
+</body>
+</html>

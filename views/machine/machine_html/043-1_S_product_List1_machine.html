@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap 3, from LayoutIt!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+    <!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+    <!--script src="js/less-1.3.3.min.js"></script-->
+    <!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/sub_04.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+
+
+    <script>
+        var qq = [];
+        $(document).ready(function () {
+
+            var items = [];
+            var num = 1;
+            var pagedItem = [];
+            $.post('/getlist3', function (data) {      // 컨텐츠 중앙창
+                items = data.sending;
+                divide(num);
+                pagenation(items.length / 5);
+            });
+
+            var items2 = [];
+            var num2 = 1;
+            var pagedItem2 = [];
+            $.post('/getlist2', function (data) {       //서브 대메뉴
+                items2 = data.sending;
+                divide2(num2);
+                pagenation(items2.length / 5);
+            });
+
+            var items3 = [];
+            var num3 = 1;
+            var pagedItem3 = [];
+
+
+
+
+
+            /*
+             var items3 = [];
+             var num3 = 1;
+             var pagedItem3 = [];
+             $.post('/getlist4', function (data) {       //서브 대메뉴
+             items3 = data.sending;
+             divide2(num3);
+             pagenation(items3.length / 5);
+             });*/
+
+
+            var divide2 = function (num2) {
+                var n = 0;
+                for (var i = (num2 - 1) * 5; i < num2 * 10; i++) {
+                    if (items2[i] != null) {
+                        pagedItem2[n] = items2[i];
+                        $("#liston2").append("<dd>" + "<span class='glyphicon glyphicon-ok'>" + pagedItem2[i].category_name + "</span>" + "</dd>");
+
+                        $.post('/getsub', {id10: i + 1}, function (data) {       //서브 대메뉴
+
+                            console.log("현재qq:"+qq);
+                            items3 = data.sending;
+                            qq = items3[0].count;
+                            console.log("count");
+                            console.log(qq);
+                            alert(qq);
+
+                        });
+                        for (var j = 0; j < qq; j++) {
+                            if (items2[j] != null) {
+                                pagedItem2[j] = items2[j];
+
+                                $("#liston2").append("<dd>" + pagedItem2[j].category_name + "</dd>");
+                            } } }
+                    else {
+                        pagedItem2[n] = null;
+                    }
+                    n++;  } };
+
+
+//
+            var divide = function (num) {
+                var n = 0;
+                for (var i = (num - 1) * 5; i < num * 5; i++) {
+                    if (items[i] != null) {
+                        pagedItem[n] = items[i];
+
+                    } else {
+                        pagedItem[n] = null;
+                    }
+                    n++;
+                }
+                $('#liston').empty();
+                $(pagedItem).each(function (i) {
+                    var id = this.id;
+                    var title = this.title;
+
+                    if (this.id != null) {
+
+                        $("#liston").append("<div class='media'>" +
+                                "<a href='/product1_View11' class='pull-left'>" + "<img src='img/new_01.png' class='img-thumbnail' alt='' style='width:128px; height:100px;'/>" + "</a>" +
+                                "<div class='media-body'>" +
+                                "<h4 class='media-heading'>" + this.title + "</h4>" + this.content +
+                                "</div>" +
+                                "</div>");
+                    }
+                });
+
+            }
+        });
+
+    </script>
+
+</head>
+<body>
+<div class="navbar-sub">
+
+    <div class="container">
+        <div class="col-md-12 column">
+
+            <ul class="list-inline pull-right">
+                <li>
+                    <a href="#">홈 &gt;</a>
+                </li>
+                <li>
+                    <a href="#">신제품소개 &gt;</a>
+                </li>
+                <li>
+                    <a href="#">TSUGAMI </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="container cont01">
+    <div class="row clearfix">
+        <div class="col-md-2 column">
+            <dl class="nav nav-stacked nav-pills">
+                <dt class="title text-center">
+                    <a href="#">신제품소개</a>
+                </dt>
+                <div id="liston2">
+
+                </div>
+
+
+            </dl>
+
+            <!--카테고리 편집 버튼-->
+            <a href="#">
+                <button type="button" class="btn btn-write pull-right">
+                    카테고리 편집
+                </button>
+            </a>
+        </div>
+        <div class="col-md-9 column col-md-offset-1">
+            <h3><a href="#"><img src="img/menu_icon_01.png"> 신제품소개</a></h3>
+            <!--신제품 리스트-->
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div id="liston">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column paginationcenter">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                        </li>
+                        <li>
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                        <li>
+                            <a href="#">4</a>
+                        </li>
+                        <li>
+                            <a href="#">5</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                        </li>
+                    </ul>
+
+                </div>
+                <a href="/product_Write11">
+                    <button type="button" class="btn btn-write pull-right">
+                        등록
+                    </button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
