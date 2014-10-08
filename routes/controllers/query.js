@@ -13,6 +13,7 @@ exports.boardlist1 = 'SELECT * FROM notice order by id desc';
 exports.boardlist2 = 'select * from c_new_product_category_level1 where category2_code=00 order by category1_code asc';  //신제품 서브 대메뉴
 exports.boardlist4 = 'select * from c_new_product_category_level1 where category2_code!=00 order by category1_code asc';  // 신제품 서브 소메뉴*/
 
+exports.list_menu = 'select *from c_new_product_category_level1 ORDER by category1_code,category2_code';              // 중고제품 리스트 순서
 
 exports.boardlist3 = 'SELECT * FROM customer_board order by id desc'; //신제품 물건선택창
 

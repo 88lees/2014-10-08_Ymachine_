@@ -30,6 +30,45 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
+
+
+    <script>
+        var list_menu = [];
+
+        $(document).ready(function () {
+
+            $.post('/list_menu', function (data) {       // 신제품 리스트
+
+                list_menu = data.sending;
+                make_menu();
+                pagenation(items.length / 5);
+            });
+            var make_menu = function () {              // 신제품 리스트
+
+                for (var i = 0; i < list_menu.length; i++) {
+                    if (list_menu[i].category2_code == "00") {
+                        if (list_menu[i+1].category2_code== "00")
+                        {
+                            $("#list_menu").append("<dd class='active'><a href=" + 'product_List11?category1_code='
+                                    + list_menu[i].category1_code + '&category2_code=' + list_menu[i].category2_code + ">" + "<span class='glyphicon glyphicon-ok'>"+ list_menu[i].category_name + "</span></span></a></dd>")  }
+                        else {
+                            $("#list_menu").append("<dd class='active'>" + "<span class='glyphicon glyphicon-ok'>" + list_menu[i].category_name + "</span>" + "</dd>");
+
+                        }
+                    }
+                    else {
+
+                        $("#list_menu").append("<dd  class='sub-menu'><a href=" + 'product_List11?category1_code='
+                                + list_menu[i].category1_code + '&category2_code=' + list_menu[i].category2_code + ">" + list_menu[i].category_name + "</a></dd>")
+                    }
+
+                }
+            }
+        });
+    </script>
+
+
+
 </head>
 <body>
 
@@ -64,33 +103,9 @@
                 <dt class="title text-center">
                     <a href="#">중고제품</a>
                 </dt>
-                <dd>
-                    <a href="/product_View12"><span class="glyphicon glyphicon-ok"></span> 머시닝센터</a>
-                </dd>
-                <dd class="active">
-                    <a href="#"><span class="glyphicon glyphicon-ok"></span> CNC선반</a>
-                </dd>
-                <dd class="sub-menu">
-                    <a href="/product_View12"> 수평형 CNC 선반</a>
-                </dd>
-                <dd class="sub-menu">
-                    <a href="/product_View12"> 수직형 CNC 선반</a>
-                </dd>
-                <dd>
-                    <a href="/product_View12"><span class="glyphicon glyphicon-ok"></span> 범용밀링</a>
-                </dd>
-                <dd>
-                    <a href="/product_View12"><span class="glyphicon glyphicon-ok"></span> 범용선반</a>
-                </dd>
-                <dd>
-                    <a href="/product_View12"><span class="glyphicon glyphicon-ok"></span> 연마기</a>
-                </dd>
-                <dd>
-                    <a href="/product_View12"><span class="glyphicon glyphicon-ok"></span> 기타</a>
-                </dd>
-                <dd>
-                    <a href="/product_View12"><span class="glyphicon glyphicon-ok"></span> 현장사용중인매물</a>
-                </dd>
+                <div id="list_menu">
+
+                </div>
 
             </dl>
             <a href="/product_CategoryMod12"><button type="button" class="btn btn-write pull-right">

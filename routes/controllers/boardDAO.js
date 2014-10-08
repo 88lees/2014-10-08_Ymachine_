@@ -600,3 +600,24 @@ exports.NoticeUpload = function(req, res){
         res.render('machine/machine_jade/043-1_S_notice_List1_machine', {title: 'Mesong'});
     });
 };
+
+
+
+
+exports.list_menu = function (req, res) {                                                       // 중고제품 서브 메뉴 시작
+    var sending = [];
+    console.log("리스트가 실행합니다");
+    c.query(query.list_menu, null).on('result', function (res) {
+        res.on('row', function (row) {
+            sending.push(row);
+        });
+    }).on('end', function () {
+        var obj = {sending: sending};
+        if (sending[0] != null) {
+            res.send(200, obj);
+        } else {
+            res.send(500, obj);
+        }});};                                                                                               // 중고제품 서브 서브 메뉴 끝
+
+
+

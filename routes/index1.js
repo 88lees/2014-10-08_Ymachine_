@@ -192,6 +192,8 @@ router1.post('/download2', board.download2);
 router1.post('/upload', multipartMiddleware, board.upload);
 router1.post('/OldUpload', multipartMiddleware, board.OldUpload);
 router1.post('/NoticeUpload', multipartMiddleware, board.NoticeUpload);
+router1.post('/list_menu', board.list_menu); //중고제품 리스트
+
 
 router1.get('/test', function(req, res) {
     res.render('test', { title: 'machine' });
