@@ -63,6 +63,9 @@ router1.get('/product_Write11', function(req, res) {
 });
 
 
+router1.get('/product_View11', function(req, res) {
+    res.render('machine/machine_jade/043-1_S_product_View1_machine', { title: 'machine' });
+});
 router1.get('/product_View12', function(req, res) {
     res.render('machine/machine_jade/043-1_S_product_View2_machine', { title: 'machine' });
 });
@@ -192,7 +195,26 @@ router1.post('/download2', board.download2);
 router1.post('/upload', multipartMiddleware, board.upload);
 router1.post('/OldUpload', multipartMiddleware, board.OldUpload);
 router1.post('/NoticeUpload', multipartMiddleware, board.NoticeUpload);
-router1.post('/list_menu', board.list_menu); //중고제품 리스트
+
+
+router1.post('/newmenu', board.newmenu);                        //신제품 리스트             (10-10) 강문식
+router1.post('/newcontent', board.newcontent);                 //신제품 컨텐츠              (10-10) 강문식
+router1.post('/newdetail', board.newdetail);                    //신제품 컨텐츠             (10-10) 강문식
+
+router1.post('/usemenu', board.usemenu);                                 //중고제품 리스트                          (10-10) 강문식
+router1.post('/usecontentimg', board.usecontentimg);                    //중고제품 컨텐츠                           (10-10) 강문식
+router1.post('/usedetail', board.usedetail);                             //중고제품 디테일                           (10-10) 강문식
+router1.post('/usedetailimg', board.usedetailimg);                       //중고제품 디테일 이미지                    (10-10) 강문식
+router1.post('/usemenuimg', board.usemenuimg);                           //중고제품 메뉴 이미지                       (10-10) 강문식
+router1.post('/viewtittle3', board.viewtittle3);                         //중고제품 디테일 뷰 맨위에 타이틀           (10-10) 강문식
+
+
+
+
+router1.post('/mainnotice', board.mainnotice);                              //메인 화면 공지사항 보기
+
+
+
 
 
 router1.get('/test', function(req, res) {

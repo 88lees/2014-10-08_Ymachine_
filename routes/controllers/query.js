@@ -44,3 +44,97 @@ exports.boardremove3 = 'delete from notice where id=?';
 
 exports.getlist_cate = 'select *from test_category_level1 ORDER by category1_code,category2_code';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.newmenu = 'select * from m_category where m_category.newORold=1 and ISNULL(m_category.ischecked)'; // 신제품 메뉴 (10-10) 강문식
+
+exports.newcontent= "select * "+                // 신제품 컨텐츠 (10-10) 강문식 시작
+"from c_product_list "+                          //
+"where c_product_list.category1_code=? "+     //
+"and c_product_list.category2_code=? "+       //
+"and c_product_list.product_id like '1%' ";  // 신제품 컨텐츠 (10-10) 강문식 끝
+
+
+
+
+
+
+exports.usemenu='select * from m_category where m_category.newORold=2 and ISNULL(m_category.ischecked)';   // 중고제품 메뉴 (10-10) 강문식
+
+
+
+
+
+exports.newdetail = "select * "+                // 신제품 디테일 뷰 (10-10) 강문식 시작
+"from m_product_model "+                        //
+"where m_product_model.category1_code=? "+   //
+"and m_product_model.category2_code=? "+     //
+"and m_product_model.product_id=? ";          // 신제품 디테일 뷰 (10-10) 강문식 끝
+
+
+
+
+
+
+exports.usedetail = "select * "+                   // 중고제품 디테일 뷰 (10-10) 강문식 시작
+    "from m_product_model "+                        //
+    "where m_product_model.category1_code=? "+   //
+    "and m_product_model.category2_code=? "+     //
+    "and m_product_model.product_id=? ";          // 중고제품 디테일 뷰 (10-10) 강문식 끝
+
+
+
+
+
+
+exports.usedetailimg = "select * "+                         // 중고제품 디테일 이미지 (10-12) 강문식 시작
+"from d_product_picture "+                                   //
+"where d_product_picture.category1_code=? "+          //
+"and d_product_picture.category2_code=? "+            //
+"and d_product_picture.product_id=? ";               // 중고제품 디테일 이미지 (10-12) 강문식 끝
+
+
+
+
+
+
+
+exports.usecontentimg = " select * from c_product_list inner join d_product_picture "+                                 // 중고제품 컨텐츠 + 이미지 (10-10) 강문식 시작
+"where c_product_list.category1_code = d_product_picture.category1_code "+                                              //
+"and c_product_list.category2_code = d_product_picture.category2_code "+                                                //
+"and c_product_list.product_id = d_product_picture.product_id "+                                                         //
+"and c_product_list.category1_code=? "+                                                                                      //
+"and c_product_list.category2_code=? "+                                                                                      //
+"and c_product_list.product_id like '2%' "+                                                                                 //
+"group by d_product_picture.category1_code,d_product_picture.category2_code,d_product_picture.product_id "+      //
+"order by d_product_picture.category1_code,d_product_picture.category2_code,d_product_picture.product_id ";      //  중고제품 컨텐츠 + 이미지 (10-10) 강문식 끝
+
+
+
+
+
+
+
+
+
+exports.viewtittle3 = "select * "+                              // 중고제품 디테일뷰  맨 위에 제목  시작
+"from c_product_list "+                                         //
+"where c_product_list.category1_code=? "+                    //
+"and c_product_list.category2_code=? "+                      //
+"and c_product_list.product_id=? ";                            //  중고제품 디테일뷰  맨 위에 제목  끝
+
+
+
+exports.mainnotice = "SELECT * FROM notice order by id desc limit 3";       // 메인화면 공지사항 3개만 보이기

@@ -29,9 +29,33 @@
     <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="scripts/design/scripts.js"></script>
+    <script src="scripts/design/respond.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="scripts/pagenation.js"></script>
+    <script src="scripts/design/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $.post('/usemenu', function (data) {      // 중고제품 메뉴
+                cate_list = data.sending;
+               make_CateList();
+
+        });
+            make_CateList = function(){
+                $("#useclick").append("<a href="+'/product_List12?category1_code=' +cate_list[1].category1_code+ '&category2_code=' +cate_list[1].category2_code+ ">"+'중고제품'+"</a>");
+
+            }
+
+            });
+
+
+    </script>
+
 </head>
 
 <body>
@@ -42,7 +66,7 @@
         <div class="col-xs-12 column">
             <div class="row clearfix">
                 <div class="col-xs-3 column">
-                    <a href="043-1_M_main.html"> <img src="img/y_machine_logo_201px.png" alt="와이머신 로고"> </a>
+                    <a href="/main1"> <img src="img/y_machine_logo_201px.png" alt="와이머신 로고"> </a>
                 </div>
                 <div class="col-xs-9 column">
                     <nav class="navbar nav-menu pull-right" role="navigation">
@@ -57,8 +81,8 @@
                                     <a href="/product_List11">신제품소개</a>
                                 </li>
 
-                                <li>
-                                    <a href="/product_List12">중고제품</a>
+                                <li id="useclick">
+
                                 </li>
 
                                 <li>

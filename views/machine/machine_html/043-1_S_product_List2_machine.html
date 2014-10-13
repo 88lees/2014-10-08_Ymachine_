@@ -17,7 +17,7 @@
     <link href="css/sub_04.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
+   &lt;!&ndash; <script src="js/html5shiv.js"></script>&ndash;&gt;
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -27,46 +27,166 @@
     <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
-
-
+    <script type="text/javascript" src="scripts/design/scripts.js"></script>
+    <script src="scripts/design/respond.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="scripts/pagenation.js"></script>
+    <script src="scripts/design/bootstrap.min.js"></script>
     <script>
-        var list_menu = [];
+        var qq = [];
+        var items = [];
+        var num = 1;
+        var pagedItemqq = [];
+        var items3 = [];
+        var num3 = 1;
+        var pagedItem3 = [];
+        var items2 = [];
+        var num2 = 1;
+        var pagedItem2 = [];
+        var cate_list = [];
+        var url;
+        var getValue;
+        var category1_code;
+        var category2_code;
+        var category3_code;
+        var menuimg = [];
+
+        var code1;
+        var code2;
+
+        url1 = window.location;
+
+        if (String(url1).indexOf("?") > 0) {
+            getValue = String(url1).split('?');
+            // alert(getValue);
+            getValue = getValue[1].split('&');
+            // alert(getValue);
+            category1_code = getValue[0].split('='); //키와 값분리
+            //  alert(category1_code);
+            category2_code = getValue[1].split('='); //키와 값분리
+/*            category3_code = getValue[2].split('='); //키와 값분리*/
+
+
+            // alert(category1_code);
+            category1_code = category1_code[1];
+            category2_code = category2_code[1];
+
+          /*  $.post('/usecontentimg', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창 (10-10)
+                items = data.sending;
+                divide(num);
+                pagenation(items.length / 5);
+            });
+
+            var divide = function (num) {
+                var n = 0;
+                for (var j = (num - 1) * 5; j < num * 5; j++) {
+                    if (items[j] != null) {
+                        pagedItemqq[n] = items[j];
+                        alert(items[j].product_id);
+                    } else {
+                        pagedItemqq[n] = null;
+                    }
+                    n++;
+                }
+                $('#liston').empty();
+                $(pagedItemqq).each(function (j) {
+                    if (this.category1_code!= null) {
+                        $("#liston").append("<div class='media'>" + "<a href='/product_View12?category1_code="+items[j].category1_code+'&category2_code='+items[j].category2_code+'&product_id='+items[j].product_id+"'" +"class='pull-left'>" + "<img src='img/product_img/" + items[j].file_name + "' " + " class='img-thumbnail' style='width:128px; height:100px;'/></a>" +
+                        "<div class='media-body'><h4 class='media-heading'><a href=" + '/product_View12?category1_code=' + items[j].category1_code + '&category2_code=' + items[j].category2_code + '&product_id=' + items[j].product_id + ">"+items[j].company+"  "+items[j].name+ "</a></h4>" +items[j].option + "</div></div>");
+                    }
+                });
+
+            };
+
+            var pagenation = function (paged) {
+                $('#page-selection').bootpag({
+                    total: paged + 1,
+                    page: 1,
+                    maxVisible: 10
+                }).on('page', function (event, num) {
+                    divide(num);
+                });
+            };*/
+        }
+
 
         $(document).ready(function () {
 
-            $.post('/list_menu', function (data) {       // 신제품 리스트
 
-                list_menu = data.sending;
-                make_menu();
-                pagenation(items.length / 5);
+            $.post('/usemenu', function (data) {      // 중고제품 메뉴
+                cate_list = data.sending;
+                make_CateList();
+                /*
+                 pagenation(items.length / 5);
+                 */
             });
-            var make_menu = function () {              // 신제품 리스트
+            var make_CateList = function () {
 
-                for (var i = 0; i < list_menu.length; i++) {
-                    if (list_menu[i].category2_code == "00") {
-                        if (list_menu[i+1].category2_code== "00")
-                        {
-                            $("#list_menu").append("<dd class='active'><a href=" + 'product_List11?category1_code='
-                                    + list_menu[i].category1_code + '&category2_code=' + list_menu[i].category2_code + ">" + "<span class='glyphicon glyphicon-ok'>"+ list_menu[i].category_name + "</span></span></a></dd>")  }
-                        else {
-                            $("#list_menu").append("<dd class='active'>" + "<span class='glyphicon glyphicon-ok'>" + list_menu[i].category_name + "</span>" + "</dd>");
-
+                for (var i = 0; i < cate_list.length; i++) {
+                    if (cate_list[i].category2_code == "00") {
+                        if (cate_list[i + 1].category2_code == "00") {
+                            $("#liston2").append("<dd class='active'><span class='glyphicon glyphicon-ok'><a class='left_menu' href=" + 'product_List12?category1_code=' + cate_list[i].category1_code + '&category2_code=' + cate_list[i].category2_code + ">"+cate_list[i].category_name+"</a></dd>")
+                        } else {
+                            $("#liston2").append("<dd class='active'>" + "<span class='glyphicon glyphicon-ok'>" + cate_list[i].category_name + "</span>" + "</dd>");
                         }
                     }
                     else {
-
-                        $("#list_menu").append("<dd  class='sub-menu'><a href=" + 'product_List11?category1_code='
-                                + list_menu[i].category1_code + '&category2_code=' + list_menu[i].category2_code + ">" + list_menu[i].category_name + "</a></dd>")
+                        //alert( cate_list[i].category2_code);
+                        $("#liston2").append("<dd  class='sub-menu'><a href=" + 'product_List12?category1_code=' + cate_list[i].category1_code + '&category2_code=' + cate_list[i].category2_code + ">" + cate_list[i].category_name + "</a></dd>")
                     }
 
                 }
-            }
-        });
-    </script>
+            };
 
+
+            $.post('/usecontentimg', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창 (10-10)
+                items = data.sending;
+                divide(num);
+                pagenation(items.length / 5);
+            });
+
+            var divide = function (num) {
+
+                var n = 0;
+                for (var j = (num - 1) * 5; j < num * 5; j++) {
+                    if (items[j] != null) {
+                        pagedItemqq[n] = items[j];
+                    } else {
+                        pagedItemqq[n] = null;
+                        console.log(pagedItemqq[n]);
+                    }
+                    n++;
+                }
+                $('#liston').empty();
+                $(pagedItemqq).each(function (j) {
+                    if (this.option!= null) {
+                        /*console.log(pagedItemqq.name);
+                        console.log(pagedItemqq.option);
+                        console.log(pagedItemqq);*/
+                        $("#liston").append("<div class='media'>" + "<a href='/product_View12?category1_code="+this.category1_code+'&category2_code='+this.category2_code+'&product_id='+this.product_id+"'" +"class='pull-left'>" + "<img src='img/product_img/" + this.file_name + "' " + " class='img-thumbnail' style='width:128px; height:100px;'/></a>" +
+                                "<div class='media-body'><h4 class='media-heading'><a href=" + '/product_View12?category1_code=' + this.category1_code + '&category2_code=' + this.category2_code + '&product_id=' + this.product_id + ">"+this.company+"  "+this.name+ "</a></h4>" +this.option + "</div></div>");
+                    }
+                });
+
+            };
+
+            var pagenation = function (paged) {
+                $('#page-selection').bootpag({
+                    total: paged + 1,
+                    page: 1,
+                    maxVisible: 10
+                }).on('page', function (event, num) {
+                    divide(num);
+                });
+            };
+//
+
+        });
+
+    </script>
 
 
 </head>
@@ -84,9 +204,6 @@
                 <li>
                     <a href="#">중고제품 &gt;</a>
                 </li>
-                <li>
-                    <a href="#">CNC선반 </a>
-                </li>
             </ul>
 
         </div>
@@ -99,13 +216,10 @@
 <div class="container cont01">
     <div class="row clearfix">
         <div class="col-md-2 column">
-            <dl class="nav nav-stacked nav-pills">
+            <dl class="nav nav-stacked nav-pills" id="liston2">
                 <dt class="title text-center">
                     <a href="#">중고제품</a>
                 </dt>
-                <div id="list_menu">
-
-                </div>
 
             </dl>
             <a href="/product_CategoryMod12"><button type="button" class="btn btn-write pull-right">
@@ -114,7 +228,7 @@
         </div>
         <div class="col-md-9 column col-md-offset-1">
             <!--추천매물 -->
-            <h3><a href="#"><img src="img/menu_icon_01.png"> 와이머신 추천매물</a></h3>
+            <h3><img src="img/menu_icon_01.png"> 와이머신 추천매물</h3>
             <div class="row recom">
                 <div class="col-sm-3">
                     <div class="thumbnail">
@@ -199,64 +313,26 @@
             <!--중고장비 리스트-->
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <div class="media">
-                        <a href="/product_View12" class="pull-left"><img src="img/cnc02_01.png" class="img-thumbnail" alt='' style="width:128px; height:100px;"/></a>
-                        <div class="media-body">
-                            <h4 class="media-heading"> 한국공작기계 중고장비2 </h4> 중고장비2입니다
-                        </div>
-                    </div>
-                    <div class="media">
-                        <a href="/product_View12" class="pull-left"><img src="img/cnc02_02.png" class="img-thumbnail" alt='' style="width:128px; height:100px;"/></a>
-                        <div class="media-body">
-                            <h4 class="media-heading"> 삼성 중고장비3 </h4> 중고장비3입니다
-                        </div>
-                    </div>
-                    <div class="media">
-                        <a href="/product_View12" class="pull-left"><img src="img/cnc02_03.png" class="img-thumbnail" alt='' style="width:128px; height:100px;"/></a>
-                        <div class="media-body">
-                            <h4 class="media-heading"> 한국공작기계 중고장비7 </h4> 중고장비7입니다
-                        </div>
-                    </div>
-                    <div class="media">
-                        <a href="/product_View12" class="pull-left"><img src="img/cnc02_04.png" class="img-thumbnail" alt='' style="width:128px; height:100px;"/></a>
-                        <div class="media-body">
-                            <h4 class="media-heading"> 두산인프라코어 중고장비3 </h4> 중고장비5입니다
-                        </div>
-                    </div>
-                    <div class="media">
-                        <a href="/product_View12" class="pull-left"><img src="img/cnc02_05.png" class="img-thumbnail" alt='' style="width:128px; height:100px;"/></a>
-                        <div class="media-body">
-                            <h4 class="media-heading"> 한국공작기계 중고장비6 </h4> 중고장비6입니다
-                        </div>
-                    </div>
+                  <div id="liston">
+
+                  </div>
                 </div>
 
             </div>
             <div class="row clearfix">
                 <div class="col-md-12 column paginationcenter">
-                    <ul class="pagination">
+                    <div class="pagination pull-right">
+                        <div id="page-selection"></div>
+                    </div>
+                   <!-- <ul class="pagination">
                         <li>
                             <a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
                         </li>
-                        <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
+
                         <li>
                             <a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </div>
                 <a href="/product_Write11">
                     <button type="button" class="btn btn-write pull-right">
@@ -271,3 +347,4 @@
 
 </body>
 </html>
+

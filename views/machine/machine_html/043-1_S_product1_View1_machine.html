@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang='ko'>
 <head>
     <meta charset="utf-8">
     <title>Bootstrap 3, from LayoutIt!</title>
@@ -30,6 +30,8 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
+
+
 </head>
 
 <body>
@@ -41,7 +43,7 @@
 
             <ul class="list-inline pull-right">
                 <li>
-                    <a href="#">홈 &gt;</a>
+                    <a href="#">홈12 &gt;</a>
                 </li>
                 <li>
                     <a href="#">신제품소개 &gt;</a>
@@ -63,10 +65,6 @@
 </div>
 
 
-
-
-
-
 <div class="container cont01">
     <div class="row clearfix">
         <div class="col-md-2 column">
@@ -74,63 +72,7 @@
                 <dt class="title text-center">
                     <a href="#">신제품소개</a>
                 </dt>
-                <dd>
-                    <a href="#"><span class="glyphicon glyphicon-ok"></span> TSUGAMI</a>
-                </dd>
-                <dd class="active sub-menu">
-                    <a href="/product1_View11"> 자동선반</a>
-                </dd>
-                <dd class="sub-menu">
-                    <a href="/product1_View11"> 머시닝센터</a>
-                </dd>
-                <dd class="sub-menu">
-                    <a href="/product1_View11"> 연삭반</a>
-                </dd>
-                <dd class="sub-menu">
-                    <a href="/product1_View11"> 전조반</a>
-                </dd>
-                <dd>
-                    <a href="#"><span class="glyphicon glyphicon-ok"></span> 머시닝센터</a>
-                </dd>
-                <dd class="sub-menu">
-                    <a href="/product1_View11"> 수직형 머시닝센터</a>
-                </dd>
-                <dd class="sub-menu">
-                    <a href="/product1_View11"> 수평형 머시닝센터</a>
-                </dd>
-                <dd>
-                    <a href="#"><span class="glyphicon glyphicon-ok"></span> CNC선반</a>
-                </dd>
-                <dd class="sub-menu">
-                    <a href="/product1_View11"> 수평형 CNC선반</a>
-                </dd>
-                <dd class="sub-menu">
-                    <a href="/product1_View11"> 수직형 CNC선반</a>
-                </dd>
-                <dd>
-                    <a href="/product1_View11"><span class="glyphicon glyphicon-ok"></span> 보링머신</a>
-                </dd>
-                <dd>
-                    <a href="/product1_View11"><span class="glyphicon glyphicon-ok"></span> 복합기</a>
-                </dd>
-                <dd>
-                    <a href="/product1_View11"><span class="glyphicon glyphicon-ok"></span> 와이어컷팅</a>
-                </dd>
-                <dd>
-                    <a href="/product1_View11"><span class="glyphicon glyphicon-ok"></span> 범용선반</a>
-                </dd>
-                <dd>
-                    <a href="/product1_View11"><span class="glyphicon glyphicon-ok"></span> 범용밀링</a>
-                </dd>
-                <dd>
-                    <a href="/product1_View11"><span class="glyphicon glyphicon-ok"></span> 레디알</a>
-                </dd>
-                <dd>
-                    <a href="/product1_View11"><span class="glyphicon glyphicon-ok"></span> 성형연삭기</a>
-                </dd>
-                <dd>
-                    <a href="/product1_View11"><span class="glyphicon glyphicon-ok"></span> 수직형 CNC선반</a>
-                </dd>
+                <div id="list"></div>
 
             </dl>
         </div>
@@ -138,6 +80,7 @@
             <h3><a href="#"> HC-series</a></h3>
             <!--상세페이지-->
             <h4><img src="img/menu_icon_01.png"> 장비이미지 </h4>
+
             <div class="carousel slide" id="carousel-723614">
                 <ol class="carousel-indicators">
                     <li data-slide-to="0" data-target="#carousel-723614"></li>
@@ -146,7 +89,7 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="item">
-                        <img alt="" src="img/HC_01.png" style="width:847px; height:387px;" />
+                        <img alt="" src="img/HC_01.png" style="width:847px; height:387px;"/>
                     </div>
                     <div class="item active">
                         <img alt="" src="img/HC_02.png" style="width:847px; height:387px;"/>
@@ -155,123 +98,173 @@
                         <img alt="" src="img/HC_03.png" style="width:847px; height:387px;"/>
                     </div>
                 </div>
-                <a class="left carousel-control" href="#carousel-723614" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control" href="#carousel-723614" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="left carousel-control" href="#carousel-723614" data-slide="prev"><span
+                        class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
+                                                                               href="#carousel-723614"
+                                                                               data-slide="next"><span
+                    class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
             <h4><img src="img/menu_icon_01.png"> 모델리스트 </h4>
+
             <div class="panel-group" id="panel-780726">
-                <div class="panel panel-default">
+
+
+                <div id="liston"></div>
+
+
+           <!--     <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-780726" href="#panel-element-109949">HC 400</a>
-                    </div>
-                    <div id="panel-element-109949" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table table-bordered">
-                                <tbody>
-                                <tr>
-                                    <th> 이송거리(X/Y/Z축) </th>
-                                    <td> 600x560x565 mm </td>
-                                    <th> 급속이송속도(X/Y/Z축) </th>
-                                    <td> 40x40x40 m/min </td>
-                                </tr>
-                                <tr>
-                                    <th> 테이블 크기 </th>
-                                    <td> 400x400 mm </td>
-                                    <th> 허용 하중 </th>
-                                    <td> 400 kg </td>
-                                </tr>
-                                <tr>
-                                    <th> 회전속도 </th>
-                                    <td> 800[10000] r/min </td>
-                                    <th> 공구형식 </th>
-                                    <td> BT40 </td>
-                                </tr>
-                                <tr>
-                                    <th> 공구 교환 시간(TTT) </th>
-                                    <td> 1.5* s </td>
-                                    <th> 공구 보유수 </th>
-                                    <td> 40[60/120/170/262] ea </td>
-                                </tr>
-                                <tr>
-                                    <th> 설명 </th>
-                                    <td colspan="3">
-                                        <ul class="list-unstyled">
-                                            <li>고성능 경제형 수평형 머시닝 센터</li>
-                                            <li>고속, 고정밀도 LM가이드웨이 채택</li>
-                                            <li>공구 교환시간 1.5초(T-T-T)로 비절삭시간을 단축하여 생산성 향상</li>
-                                            <li>자동 팔레트 교환장치(APC)의 기본 제공으로 생산성 향상</li></ul></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-780726" href="#panel-element-143543">HC 500</a>
+                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-780726"
+                           href="#panel-element-143543">HC 500</a>
                     </div>
                     <div id="panel-element-143543" class="panel-collapse collapse">
                         <div class="panel-body">
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>
-                                    <th> 이송거리(X/Y/Z축) </th>
-                                    <td> 850x700x750 mm </td>
-                                    <th> 급속이송속도(X/Y/Z축) </th>
-                                    <td> 40x40x40 m/min </td>
+                                    <th> 이송거리(X/Y/Z축)</th>
+                                    <td> 850x700x750 mm</td>
+                                    <th> 급속이송속도(X/Y/Z축)</th>
+                                    <td> 40x40x40 m/min</td>
                                 </tr>
                                 <tr>
-                                    <th> 테이블 크기 </th>
-                                    <td> 500x500 mm </td>
-                                    <th> 허용 하중 </th>
-                                    <td> 500 kg </td>
+                                    <th> 테이블 크기</th>
+                                    <td> 500x500 mm</td>
+                                    <th> 허용 하중</th>
+                                    <td> 500 kg</td>
                                 </tr>
                                 <tr>
-                                    <th> 회전속도 </th>
-                                    <td> 800[10000] r/min </td>
-                                    <th> 공구형식 </th>
-                                    <td> BT40 </td>
+                                    <th> 회전속도</th>
+                                    <td> 800[10000] r/min</td>
+                                    <th> 공구형식</th>
+                                    <td> BT40</td>
                                 </tr>
                                 <tr>
-                                    <th> 공구 교환 시간(TTT) </th>
-                                    <td> 1.5* s </td>
-                                    <th> 공구 보유수 </th>
-                                    <td> 40[60/120/170/262] ea </td>
+                                    <th> 공구 교환 시간(TTT)</th>
+                                    <td> 1.5* s</td>
+                                    <th> 공구 보유수</th>
+                                    <td> 40[60/120/170/262] ea</td>
                                 </tr>
                                 <tr>
-                                    <th> 설명 </th>
+                                    <th> 설명</th>
                                     <td colspan="3">
                                         <ul class="list-unstyled">
                                             <li>고성능 경제형 수평형 머시닝 센터</li>
                                             <li>고속, 고정밀도 LM가이드웨이 채택</li>
                                             <li>공구 교환시간 1.5초(T-T-T)로 비절삭시간을 단축하여 생산성 향상</li>
-                                            <li>자동 팔레트 교환장치(APC)의 기본 제공으로 생산성 향상</li></ul></td>
+                                            <li>자동 팔레트 교환장치(APC)의 기본 제공으로 생산성 향상</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
+                </div>-->
+
             </div>
             <h4><img src="img/menu_icon_01.png"> 첨부파일 </h4>
-            <a href="/product_List11"><button type="button" class="btn btn-write pull-right">
-                목록
-            </button></a>
-            <a href="#"><button type="button" class="btn btn-danger pull-right">
-                삭제
-            </button></a>
-            <a href="/product_Write11"><button type="button" class="btn btn-warning pull-right">
-                수정
-            </button></a>
+            <a href="/product_List11">
+                <button type="button" class="btn btn-write pull-right">
+                    목록
+                </button>
+            </a>
+            <a href="#">
+                <button type="button" class="btn btn-danger pull-right">
+                    삭제
+                </button>
+            </a>
+            <a href="/product_Write11">
+                <button type="button" class="btn btn-warning pull-right">
+                    수정
+                </button>
+            </a>
 
         </div>
     </div>
 </div>
 
 
+<script>
+    var qq = [];
+    var items = [];
+    var num = 1;
+    var pagedItem = [];
+    var items3 = [];
+    var num3 = 1;
+    var pagedItem3 = [];
+    var items2 = [];
+    var num2 = 1;
+    var pagedItem2 = [];
+    var cate_list = [];
+    var url;
+    var getValue;
+    var category1_code;
+    var category2_code;
+    var category3_code;
+
+    var product_id;
+    var code1;
+    var code2;
+    var url = window.location.href;
+
+    getValue = String(url).split('?');
+    getValue = getValue[1].split('&');
+    category1_code = getValue[0].split('='); //키와 값분리
+    category2_code = getValue[1].split('='); //키와 값분리
+    category3_code = getValue[2].split('='); //키와 값분리
+
+    category1_code = category1_code[1];
+    category2_code = category2_code[1];
+    category3_code = category3_code[1];
+
+    $(document).ready(function () {
+
+        $.post('/newmenu', function (data) {      // 신제품 메뉴
+            cate_list = data.sending;
+            make_CateList();
+            /*
+             pagenation(items.length / 5);
+             */
+        });
+
+
+        var make_CateList = function () {
+
+            for (var i = 0; i < cate_list.length; i++) {
+                if (cate_list[i].category2_code == "00") {
+                    if (cate_list[i + 1].category2_code == "00") {
+                        $("#list").append("<dd  class='active'><span class='glyphicon glyphicon-ok'><a href=" + 'product_List11?category1_code=' + cate_list[i].category1_code + '&category2_code=' + cate_list[i].category2_code + ">" + cate_list[i].category_name + "</a></dd>")
+                    } else {
+                        $("#list").append("<dd class='active'>" + "<span class='glyphicon glyphicon-ok'>" + cate_list[i].category_name + "</span>" + "</dd>");
+                    }
+                }
+                else {
+                    //alert( cate_list[i].category2_code);
+                    $("#list").append("<dd  class='sub-menu'><a href=" + 'product_List11?category1_code=' + cate_list[i].category1_code + '&category2_code=' + cate_list[i].category2_code + ">" + cate_list[i].category_name + "</a></dd>")
+                } } };
 
 
 
+
+
+        $.post('/newdetail', {code1 :category1_code, code2 : category2_code , code3 : category3_code}, function (data) {
+            items = data.sending;
+            make_newdetail();
+
+        });
+
+        var make_newdetail = function () {
+            for (var j = 0; j < items.length; j++) {
+                $("#liston").append("<div class='panel panel-default'><div class='panel-heading'>" +
+               "<a class='panel-title collapsed' data-toggle='collapse' data-parent='#panel-780726' href="+'#panel-element-10'+j+">" + items[j].product_model_name + "</a></div>"+
+            "<div class='panel-collapse collapse' id="+'panel-element-10'+j+"><div class='panel-body'><textarea class='form-control' id='content' rows='10' readonly='readonly'>"+items[j].product_model_option+"</textarea></div></div></div>");
+            }}
+    });
+</script>
 
 
 </body>
+
+
 </html>

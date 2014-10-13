@@ -101,3 +101,23 @@ dd{margin:2px; }
 
 .quick .list-group a{color:#444444; font-weight:bold;}
 .quick .list-group a:hover{text-decoration: none; color:#FF0000;}
+
+
+.left_menu{
+    box-sizing: border-box;
+    color: rgb(51, 51, 51);
+/*
+    display: block;
+*/
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    margin-bottom: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 5px;
+}

@@ -602,12 +602,244 @@ exports.NoticeUpload = function(req, res){
 };
 
 
+exports.newmenu = function (req, res) {                                                       // 신제품 서브 메뉴 시작 (10-10) 강문식
+    var sending = [];                                                                           //
+    console.log("리스트가 실행합니다111111111111111111");                                  //
+    c.query(query.newmenu, null).on('result', function (res) {                              //
+        res.on('row', function (row) {                                                         //
+            sending.push(row);                                                                   //
+        });                                                                                      //
+    }).on('end', function () {                                                                 //
+        var obj = {sending: sending};                                                          //
+        if (sending[0] != null) {                                                               //
+            res.send(200, obj);                                                                  //
+        } else {                                                                                //
+            res.send(500, obj);                                                                 //
+        }});};                                                                                  // 신제품 서브 서브 메뉴 끝 (10-10) 강문식
 
 
-exports.list_menu = function (req, res) {                                                       // 중고제품 서브 메뉴 시작
+
+
+
+
+exports.newcontent = function (req, res) {                                                      //신제품 컨텐츠 (10-10) 강문식 시작
+    var sending = [];                                                                             //
+    var category1_code = req.body.category1_code;                                              //
+    var category2_code = req.body.category2_code;                                              //
+    console.log("카타고리1,2");                                                                 //
+    console.log(category1_code);                                                                  //
+    console.log(category2_code);                                                                  //
+    // title, content, file, writer, href                                                          //
+    c.query(query.newcontent, [ category1_code, category2_code]).on('result', function (res) {   //
+        res.on('row', function (row) {                                                           //
+            sending.push(row);                                                                     //
+        });                                                                                        //
+    }).on('end', function () {                                                                   //
+        var obj = {sending: sending};                                                            //
+        if (sending[0] != null) {                                                                 //
+            res.send(200, obj);                                                                    //
+        } else {                                                                                   //
+            res.send(500, obj);                                                                     //
+        }                                                                                           //
+    });                                                                                             //
+};                                                                                                   //신제품 컨텐츠 (10-10) 강문식 시작 끝
+
+
+
+
+
+exports.usemenu = function (req, res) {                                                       // 중고제품 서브 메뉴 시작 (10-10) 강문식
+    var sending = [];                                                                           //
+    console.log("리스트가 실행합니다");                                                       //
+    c.query(query.usemenu, null).on('result', function (res) {                              //
+        res.on('row', function (row) {                                                         //
+            sending.push(row);                                                                    //
+        });                                                                                       //
+    }).on('end', function () {                                                                  //
+        var obj = {sending: sending};                                                            //
+        if (sending[0] != null) {                                                                 //
+            res.send(200, obj);                                                                    //
+        } else {                                                                                   //
+            res.send(500, obj);                                                                     //
+        }});};                                                                                      // 중고제품 서브 서브 메뉴 끝 (10-10) 강문식
+
+
+
+
+
+exports.usecontentimg = function (req, res) {                                                                   //중고제품 컨텐츠 (10-10) 강문식 시작
+    var sending = [];                                                                                          //
+    var category1_code = req.body.category1_code;                                                           //
+    var category2_code = req.body.category2_code;
+                                                          console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");//
+                                                                                                               //
+    c.query(query.usecontentimg, [ category1_code, category2_code]).on('result', function (res) {            //
+        res.on('row', function (row) {                                                                       //
+            sending.push(row);                                                                                 //
+        });                                                                                                    //
+    }).on('end', function () {                                                                               //
+        var obj = {sending: sending};                                                                         //
+        console.log(obj);
+        if (sending[0] != null) {                                                                              //
+            res.send(200, obj);                                                                                 //
+        } else {                                                                                                //
+            res.send(500, obj);                                                                                  //
+        }                                                                                                         //
+    })                                                                                                            //신제품 컨텐츠 (10-10) 강문식 끝
+};
+
+
+
+
+
+exports.newdetail = function (req, res) {                                                                       // 신제품 디테일 뷰 (10-10) 강문식 시작
+    var sending = [];                                                                                             //
+    var category1_code = req.body.code1;                                                                        //
+    var category2_code = req.body.code2;                                                                        //
+    var product_id = req.body.code3;                                                                            //
+                                                                                                                  //
+    c.query(query.newdetail, [ category1_code,category2_code,product_id]).on('result', function (res) {      //
+        res.on('row', function (row) {                                                                          //
+            sending.push(row);                                                                                    //
+        });                                                                                                       //
+    }).on('end', function () {                                                                                  //
+        var obj = {sending: sending};                                                                            //
+        if (sending[0] != null) {                                                                                 //
+            res.send(200, obj);                                                                                    //
+        } else {                                                                                                   //
+            res.send(500, obj);                                                                                    //
+        }                                                                                                          //
+    })                                                                                                             // 신제품 디테일 뷰 (10-10) 강문식 끝
+};
+
+
+
+
+
+
+exports.usedetail = function (req, res) {                                                                       // 신제품 디테일 뷰 모달 (10-10) 강문식 시작
+    var sending = [];                                                                                             //
+    var category1_code = req.body.code1;                                                                        //
+    var category2_code = req.body.code2;                                                                        //
+    var product_id = req.body.code3;                                                                            //
+                                                                                                                  //
+    c.query(query.usedetail, [ category1_code,category2_code,product_id]).on('result', function (res) {      //
+        res.on('row', function (row) {                                                                          //
+            sending.push(row);                                                                                    //
+        });                                                                                                       //
+    }).on('end', function () {                                                                                  //
+        var obj = {sending: sending};                                                                            //
+        if (sending[0] != null) {                                                                                 //
+            res.send(200, obj);                                                                                    //
+        } else {                                                                                                   //
+            res.send(500, obj);                                                                                    //
+        }                                                                                                          //
+    });                                                                                                            // 신제품 디테일 뷰 모달 (10-10) 강문식 끝
+};
+
+
+
+
+
+
+
+
+
+
+exports.usedetailimg = function (req, res) {                                                                    // 신제품 디테일 썸네일 이미지 (10-12) 강문식 시작
+    var sending = [];                                                                                             //
+    var category1_code = req.body.code1;                                                                        //
+    var category2_code = req.body.code2;                                                                        //
+    var product_id = req.body.code3;                                                                            //
+                                                                                                                   //
+    c.query(query.usedetailimg, [ category1_code,category2_code,product_id]).on('result', function (res) {    //
+        res.on('row', function (row) {                                                                          //
+            sending.push(row);                                                                                    //
+        });                                                                                                       //
+    }).on('end', function () {                                                                                  //
+        var obj = {sending: sending};                                                                            //
+        if (sending[0] != null) {                                                                                 //
+            res.send(200, obj);                                                                                    //
+        } else {                                                                                                   //
+            res.send(500, obj);                                                                                    //
+        }                                                                                                          //
+    });                                                                                                             // 신제품 디테일 썸네일 이미지 (10-12) 강문식 끝
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.usemenuimg = function (req, res) {                                                                       // 중고제품 메뉴 이미지 (10-10) 강문식 시작
+    var sending = [];                                                                                             //
+    var category1_code = req.body.code1;                                                                        //
+    var category2_code = req.body.code2;                                                                        //
+    var product_id = req.body.code3;                                                                            //
+    console.log("중고제품 메뉴 이미지")                                                                       //
+    c.query(query.usemenuimg, [ category1_code,category2_code,product_id]).on('result', function (res) {      //
+        res.on('row', function (row) {                                                                          //
+            sending.push(row);                                                                                    //
+        });                                                                                                       //
+    }).on('end', function () {                                                                                  //
+        var obj = {sending: sending};                                                                            //
+        if (sending[0] != null) {                                                                                 //
+            res.send(200, obj);                                                                                    //
+        } else {                                                                                                   //
+            res.send(500, obj);                                                                                    //
+        }                                                                                                          //
+    })                                                                                                             // 중고제품 메뉴 이미지 (10-10) 강문식 끝
+};
+
+
+
+
+
+
+exports.viewtittle3 = function (req, res) {                                                                       // 중고제품 디테일 맨위 타이틀 (10-12) 강문식 시작
+    var sending = [];                                                                                             //
+    var category1_code = req.body.code1;                                                                        //
+    var category2_code = req.body.code2;                                                                        //
+    var product_id = req.body.code3;                                                                            //
+    console.log(category1_code)                                                                                 //
+    console.log(category2_code)                                                                                 //
+    console.log(product_id)                                                                                     //
+    c.query(query.viewtittle3, [ category1_code,category2_code,product_id]).on('result', function (res) {   //
+        res.on('row', function (row) {                                                                          //
+            sending.push(row);                                                                                    //
+        });                                                                                                       //
+    }).on('end', function () {                                                                                  //
+        var obj = {sending: sending};                                                                            //
+        if (sending[0] != null) {                                                                                 //
+            res.send(200, obj);                                                                                    //
+        } else {                                                                                                   //
+            res.send(500, obj);                                                                                    //
+        }                                                                                                          //
+    })                                                                                                             // 중고제품 디테일 맨위 타이틀 (10-12) 강문식 끝
+};
+
+
+
+
+
+
+
+
+
+
+exports.mainnotice = function (req, res) {
     var sending = [];
-    console.log("리스트가 실행합니다");
-    c.query(query.list_menu, null).on('result', function (res) {
+    c.query(query.mainnotice).on('result', function (res) {
         res.on('row', function (row) {
             sending.push(row);
         });
@@ -617,7 +849,6 @@ exports.list_menu = function (req, res) {                                       
             res.send(200, obj);
         } else {
             res.send(500, obj);
-        }});};                                                                                               // 중고제품 서브 서브 메뉴 끝
-
-
-
+        }
+    });
+};

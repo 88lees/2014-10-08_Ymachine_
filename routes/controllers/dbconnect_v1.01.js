@@ -10,7 +10,7 @@ exports.connection = function(){
     var host = '192.168.3.2';
     var user = 'admin';
     var password = '1234';
-    var db = 'ymc2014_v1.0';
+    var db = 'ymc2014_v1.1';
 
 
 //connection setting
