@@ -604,7 +604,7 @@ exports.NoticeUpload = function(req, res){
 
 exports.newmenu = function (req, res) {                                                       // 신제품 서브 메뉴 시작 (10-10) 강문식
     var sending = [];                                                                           //
-    console.log("리스트가 실행합니다111111111111111111");                                  //
+                                                                                                //
     c.query(query.newmenu, null).on('result', function (res) {                              //
         res.on('row', function (row) {                                                         //
             sending.push(row);                                                                   //
@@ -671,7 +671,7 @@ exports.usecontentimg = function (req, res) {                                   
     var sending = [];                                                                                          //
     var category1_code = req.body.category1_code;                                                           //
     var category2_code = req.body.category2_code;
-                                                          console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");//
+                                                                                                                //
                                                                                                                //
     c.query(query.usecontentimg, [ category1_code, category2_code]).on('result', function (res) {            //
         res.on('row', function (row) {                                                                       //
@@ -699,14 +699,14 @@ exports.newcontentimg = function (req, res) {                                   
     var category1_code = req.body.category1_code;                                                           //
     var category2_code = req.body.category2_code;
     console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");//
-    //
+                                                                                                                      //
     c.query(query.newcontentimg, [ category1_code, category2_code]).on('result', function (res) {            //
         res.on('row', function (row) {                                                                       //
             sending.push(row);                                                                                 //
         });                                                                                                    //
     }).on('end', function () {                                                                               //
         var obj = {sending: sending};                                                                         //
-        console.log(obj);
+
         if (sending[0] != null) {                                                                              //
             res.send(200, obj);                                                                                 //
         } else {                                                                                                //

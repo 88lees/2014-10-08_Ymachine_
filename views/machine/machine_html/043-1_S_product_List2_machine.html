@@ -163,12 +163,9 @@
                 $('#liston').empty();
                 $(pagedItemqq).each(function (j) {
                     if (this.option!= null) {
-                        /*console.log(pagedItemqq.name);
-                        console.log(pagedItemqq.option);
-                        console.log(pagedItemqq);*/
                         $("#liston").append("<div class='media'>" + "<a href='/product_View12?category1_code="+this.category1_code+'&category2_code='+this.category2_code+'&product_id='+this.product_id+"'" +"class='pull-left'>" + "<img src='img/product_img/" + this.file_name + "' " + " class='img-thumbnail' style='width:128px; height:100px;'/></a>" +
                                 "<div class='media-body'><h4 class='media-heading'><a href=" + '/product_View12?category1_code=' + this.category1_code + '&category2_code=' + this.category2_code + '&product_id=' + this.product_id + ">"+this.company+"  "+this.name+ "</a></h4>" +this.option + "</div></div>");
-                    }
+     }
                 });
 
             };
