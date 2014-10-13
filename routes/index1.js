@@ -200,7 +200,7 @@ router1.post('/NoticeUpload', multipartMiddleware, board.NoticeUpload);
 router1.post('/newmenu', board.newmenu);                        //신제품 리스트             (10-10) 강문식
 router1.post('/newcontent', board.newcontent);                 //신제품 컨텐츠              (10-10) 강문식
 router1.post('/newdetail', board.newdetail);                    //신제품 컨텐츠             (10-10) 강문식
-router1.post('/newcontentimg', board.usecontentimg);                    //중고제품 컨텐츠                           (10-10) 강문식
+router1.post('/newcontentimg', board.newcontentimg);                    //중고제품 컨텐츠                           (10-10) 강문식
 
 
 

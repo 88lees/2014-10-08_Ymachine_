@@ -700,7 +700,7 @@ exports.newcontentimg = function (req, res) {                                   
     var category2_code = req.body.category2_code;
     console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");//
     //
-    c.query(query.usecontentimg, [ category1_code, category2_code]).on('result', function (res) {            //
+    c.query(query.newcontentimg, [ category1_code, category2_code]).on('result', function (res) {            //
         res.on('row', function (row) {                                                                       //
             sending.push(row);                                                                                 //
         });                                                                                                    //
