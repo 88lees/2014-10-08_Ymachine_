@@ -126,6 +126,20 @@ exports.usecontentimg = " select * from c_product_list inner join d_product_pict
 
 
 
+exports.newcontentimg = " select * from c_product_list inner join d_product_picture "+                                 // 중고제품 컨텐츠 + 이미지 (10-10) 강문식 시작
+    "where c_product_list.category1_code = d_product_picture.category1_code "+                                              //
+    "and c_product_list.category2_code = d_product_picture.category2_code "+                                                //
+    "and c_product_list.product_id = d_product_picture.product_id "+                                                         //
+    "and c_product_list.category1_code=? "+                                                                                      //
+    "and c_product_list.category2_code=? "+                                                                                      //
+    "and c_product_list.product_id like '1%' "+                                                                                 //
+    "group by d_product_picture.category1_code,d_product_picture.category2_code,d_product_picture.product_id "+      //
+    "order by d_product_picture.category1_code,d_product_picture.category2_code,d_product_picture.product_id ";      //  중고제품 컨텐츠 + 이미지 (10-10) 강문식 끝
+
+
+
+
+
 
 
 
