@@ -692,6 +692,36 @@ exports.usecontentimg = function (req, res) {                                   
 
 
 
+
+
+exports.newcontentimg = function (req, res) {                                                                   //중고제품 컨텐츠 (10-10) 강문식 시작
+    var sending = [];                                                                                          //
+    var category1_code = req.body.category1_code;                                                           //
+    var category2_code = req.body.category2_code;
+    console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");//
+    //
+    c.query(query.usecontentimg, [ category1_code, category2_code]).on('result', function (res) {            //
+        res.on('row', function (row) {                                                                       //
+            sending.push(row);                                                                                 //
+        });                                                                                                    //
+    }).on('end', function () {                                                                               //
+        var obj = {sending: sending};                                                                         //
+        console.log(obj);
+        if (sending[0] != null) {                                                                              //
+            res.send(200, obj);                                                                                 //
+        } else {                                                                                                //
+            res.send(500, obj);                                                                                  //
+        }                                                                                                         //
+    })                                                                                                            //신제품 컨텐츠 (10-10) 강문식 끝
+};
+
+
+
+
+
+
+
+
 exports.newdetail = function (req, res) {                                                                       // 신제품 디테일 뷰 (10-10) 강문식 시작
     var sending = [];                                                                                             //
     var category1_code = req.body.code1;                                                                        //
