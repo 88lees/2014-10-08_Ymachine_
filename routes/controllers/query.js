@@ -101,9 +101,15 @@ exports.usedetail = "select * "+                   // 중고제품 디테일 뷰
 
 exports.usedetailimg = "select * "+                         // 중고제품 디테일 이미지 (10-12) 강문식 시작
 "from d_product_picture "+                                   //
-"where d_product_picture.category1_code=? "+          //
-"and d_product_picture.category2_code=? "+            //
-"and d_product_picture.product_id=? ";               // 중고제품 디테일 이미지 (10-12) 강문식 끝
+"where d_product_picture.category1_code=? "+              //
+"and d_product_picture.category2_code=? "+                //
+"and d_product_picture.product_id=? ";                      // 중고제품 디테일 이미지 (10-12) 강문식 끝
+
+exports.newdetailimg = "select * "+                             // 신제품 디테일 이미지 (10-14) 강문식 시작
+    "from d_product_picture "+                                   //
+    "where d_product_picture.category1_code=? "+              //
+    "and d_product_picture.category2_code=? "+                //
+    "and d_product_picture.product_id=? ";                      // 신제품 디테일 이미지 (10-14) 강문식 끝
 
 
 

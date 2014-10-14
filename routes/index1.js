@@ -197,24 +197,24 @@ router1.post('/OldUpload', multipartMiddleware, board.OldUpload);
 router1.post('/NoticeUpload', multipartMiddleware, board.NoticeUpload);
 
 
-router1.post('/newmenu', board.newmenu);                        //신제품 리스트             (10-10) 강문식
-router1.post('/newcontent', board.newcontent);                 //신제품 컨텐츠              (10-10) 강문식
-router1.post('/newdetail', board.newdetail);                    //신제품 컨텐츠             (10-10) 강문식
-router1.post('/newcontentimg', board.newcontentimg);                    //중고제품 컨텐츠                           (10-10) 강문식
-
+router1.post('/newmenu', board.newmenu);                                 //신제품 리스트                            (10-10) 강문식
+router1.post('/newcontent', board.newcontent);                          //신제품 컨텐츠                            (10-10) 강문식
+router1.post('/newdetail', board.newdetail);                             //신제품 컨텐츠                           (10-10) 강문식
+router1.post('/newcontentimg', board.newcontentimg);                    //신제품 컨텐츠                            (10-10) 강문식
+router1.post('/newdetailimg', board.newdetailimg);                       //신제품 디테일 이미지                    (10-14) 강문식
 
 
 router1.post('/usemenu', board.usemenu);                                 //중고제품 리스트                          (10-10) 강문식
 router1.post('/usecontentimg', board.usecontentimg);                    //중고제품 컨텐츠                           (10-10) 강문식
 router1.post('/usedetail', board.usedetail);                             //중고제품 디테일                           (10-10) 강문식
 router1.post('/usedetailimg', board.usedetailimg);                       //중고제품 디테일 이미지                    (10-10) 강문식
-router1.post('/usemenuimg', board.usemenuimg);                           //중고제품 메뉴 이미지                       (10-10) 강문식
+/*router1.post('/usemenuimg', board.usemenuimg);                           //중고제품 메뉴 이미지                       (10-10) 강문식*/
 router1.post('/viewtittle3', board.viewtittle3);                         //중고제품 디테일 뷰 맨위에 타이틀           (10-10) 강문식
 
 
 
 
-router1.post('/mainnotice', board.mainnotice);                              //메인 화면 공지사항 보기
+router1.post('/mainnotice', board.mainnotice);                              //메인 화면 공지사항 보기   (10-13) 강문식
 
 
 
