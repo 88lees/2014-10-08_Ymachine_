@@ -43,12 +43,18 @@
 
             $.post('/usemenu', function (data) {      // 중고제품 메뉴
                 cate_list = data.sending;
-               make_CateList();
+                make_CateList();
+            });
+                $.post('/newmenu', function (data) {      // 중고제품 메뉴
+                    cate_list1 = data.sending;
+                    make_CateList1();
 
         });
             make_CateList = function(){
                 $("#useclick").append("<a href="+'/product_List12?category1_code=' +cate_list[1].category1_code+ '&category2_code=' +cate_list[1].category2_code+ ">"+'중고제품'+"</a>");
-
+            }
+            make_CateList1 = function(){
+                $("#newclick").append("<a href="+'/product_List11?category1_code=' +cate_list1[1].category1_code+ '&category2_code=' +cate_list1[1].category2_code+ ">"+'신제품소개'+"</a>");
             }
 
             });
@@ -77,8 +83,8 @@
                                     <a href="/intro1">회사소개</a>
                                 </li>
 
-                                <li>
-                                    <a href="/product_List11">신제품소개</a>
+                                <li id="newclick">
+
                                 </li>
 
                                 <li id="useclick">
