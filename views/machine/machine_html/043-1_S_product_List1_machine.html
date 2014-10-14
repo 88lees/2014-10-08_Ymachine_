@@ -17,7 +17,7 @@
     <link href="css/sub_04.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
+   &lt;!&ndash; <script src="js/html5shiv.js"></script>&ndash;&gt;
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -27,16 +27,21 @@
     <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="scripts/design/scripts.js"></script>
+    <script src="scripts/design/respond.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="scripts/pagenation.js"></script>
+    <script src="scripts/design/bootstrap.min.js"></script>
 
 
     <script>
         var qq = [];
         var items = [];
         var num = 1;
-        var pagedItem = [];
+        var pagedItemqq = [];
         var items3 = [];
         var num3 = 1;
         var pagedItem3 = [];
@@ -68,18 +73,85 @@
             category2_code = category2_code[1];
 
 
-            $.post('/newcontent', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창 (10-10)
+            /*$.post('/newcontentimg', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창 (10-10)
                 items = data.sending;
-                make_content();
+                make_content(num);
                 pagenation(items.length / 5);
             });
 
             var make_content = function () {
-                for (var j = 0; j < items.length; j++) {
-                    $("#liston").append("<div class='media'>" + "<a href='/product_View11' class='pull-left'><img src='img/cnc02_01.png' class='img-thumbnail' alt='' style='width:128px; height:100px;'/></a>" +
-                            "<div class='media-body'><h4 class='media-heading'><a href=" + 'product_View11?category1_code=' + items[j].category1_code + '&category2_code=' + items[j].category2_code + '&product_id=' + items[j].product_id + ">" + items[j].name + "</a></h4>" + items[j].company + "</div></div>");
-                }}
-        }
+                var n=0;
+                for (var j =(num-1)*5; j < num*5 ; j++) {
+
+                        if (items[j] != null) {
+                            pagedItemqq[n] = items[j];
+                        } else {
+                            pagedItemqq[n] = null;
+                            n++;
+                        }}
+
+
+                $('#liston').empty();
+                $(pagedItemqq).each(function (j) {
+                    if (this.option!= null) {
+                        $("#liston").append("<div class='media'>" + "<a href='/product_View11' class='pull-left'><img src='img/cnc02_01.png' class='img-thumbnail' alt='' style='width:128px; height:100px;'/></a>" +
+                                "<div class='media-body'><h4 class='media-heading'><a href=" + 'product_View11?category1_code=' + this.category1_code + '&category2_code=' + this.category2_code + '&product_id=' + this.product_id + ">" + this.name + "</a></h4>" + this.company + "</div></div>");
+                    }
+                });
+            }
+
+                        var pagenation = function (paged) {
+                            $('#page-selection').bootpag({
+                                total: paged + 1,
+                                page: 1,
+                                maxVisible: 10
+                            }).on('page', function (event, num) {
+                        make_content(num);
+                            });
+                        };*/
+
+            $.post('/newcontentimg', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창 (10-10)
+                items = data.sending;
+                divide(num);
+                pagenation(items.length / 5);
+            });
+
+            var divide = function (num) {
+
+                var n = 0;
+                for (var j = (num - 1) * 5; j < num * 5; j++) {
+                    if (items[j] != null) {
+                        pagedItemqq[n] = items[j];
+                    } else {
+                        pagedItemqq[n] = null;
+                        console.log(pagedItemqq[n]);
+                    }
+                    n++;
+                }
+                $('#liston').empty();
+                $(pagedItemqq).each(function (j) {
+                    if (this.option!= null) {
+                        $("#liston").append("<div class='media'>" + "<a href='/product_View11?category1_code="+this.category1_code+'&category2_code='+this.category2_code+'&product_id='+this.product_id+"'" +"class='pull-left'>" + "<img src='img/product_img/" + this.file_name + "' " + " class='img-thumbnail' style='width:128px; height:100px;'/></a>" +
+                                "<div class='media-body'><h4 class='media-heading'><a href=" + '/product_View11?category1_code=' + this.category1_code + '&category2_code=' + this.category2_code + '&product_id=' + this.product_id + ">"+this.company+"  "+this.name+ "</a></h4>" +this.option + "</div></div>");
+                    }
+                });
+
+            };
+
+            var pagenation = function (paged) {
+                $('#page-selection').bootpag({
+                    total: paged + 1,
+                    page: 1,
+                    maxVisible: 10
+                }).on('page', function (event, num) {
+                    divide(num);
+                });
+            };
+
+
+                    }
+
+
 
 
         $(document).ready(function () {
@@ -163,29 +235,16 @@
             </div>
             <div class="row clearfix">
                 <div class="col-md-12 column paginationcenter">
-                    <ul class="pagination">
-                        <li>
+                    <div class="pagination pull-right">
+                        <div id="page-selection"></div>
+                    </div>
+                        <!--<li>
                             <a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
                         </li>
                         <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
-                        <li>
                             <a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                        </li>
-                    </ul>
+                        </li>-->
+
 
                 </div>
                 <a href="/product_Write11">
