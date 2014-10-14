@@ -6,7 +6,7 @@
 exports.chkAccount = 'select * from account where id=? and pswd=?';
 
 exports.boardlist = 'SELECT * FROM customer_board order by id desc';
-exports.boardlist2 = 'SELECT * FROM old_customer order by id desc';
+exports.boardlist2 = 'SELECT * FROM old_customer_board order by id desc';
 
 exports.boardlist1 = 'SELECT * FROM notice order by id desc';
 /*
@@ -21,25 +21,25 @@ exports.boardlist4 = 'select count(DISTINCT c_new_product_category_level1.catego
 
 exports.boardget3 = 'select * from notice where id=?';
 exports.boardget = 'select * from customer_board where id=?';
-exports.boardget2 = 'select * from old_customer where id=?';
+exports.boardget2 = 'select * from old_customer_board where id=?';
 /*exports.boardget2 = 'select * from notice where id=?';*/
 
 
 
 // title, content, file, writer, href
 exports.boardinsert = 'insert into customer_board(id, title, content, writer,company, contact, email, date, file) values(null,?,?,?,?,?,?,now(),?)';
-exports.boardinsert2 = 'insert into old_customer(id, title, content, writer,company, contact, email, date, file) values(null,?,?,?,?,?,?,now(),?)';
+exports.boardinsert2 = 'insert into old_customer_board(id, title, content, writer,company, contact, email, date, file) values(null,?,?,?,?,?,?,now(),?);';
 // title, content, file, href, id
 
 exports.boardinsert3 = 'insert into notice(id, title, content, date, file ) values(null,?,?,now(),?)';
 
 exports.boardmodify = 'update customer_board set title=?, content=?, writer=?, company=?, contact=?, email=?, date=now() where id=?';
-exports.boardmodify2 = 'update old_customer set title=?, content=?, writer=?, company=?, contact=?, email=?, date=now() where id=?';
+exports.boardmodify2 = 'update old_customer_board set title=?, content=?, writer=?, company=?, contact=?, email=?, date=now() where id=?';
 exports.boardmodify3 = 'update notice set title=?, content=? where id=?';
 
 
 exports.boardremove = 'delete from customer_board where id=?';
-exports.boardremove2 = 'delete from old_customer where id=?';
+exports.boardremove2 = 'delete from old_customer_board where id=?';
 exports.boardremove3 = 'delete from notice where id=?';
 
 exports.getlist_cate = 'select *from test_category_level1 ORDER by category1_code,category2_code';

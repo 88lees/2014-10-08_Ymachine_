@@ -347,7 +347,7 @@ exports.update2 = function (req, res) {
 
 
 exports.update3 = function (req, res) {
-    var id = req.body.id4;
+    var id = req.body.id2;
     var title = req.body.title;
     var content = req.body.content;
     console.log(id);
@@ -396,7 +396,6 @@ exports.delete3 = function (req, res) {
         res.on('row', function (row) {
         });
     }).on('end', function () {
-        var obj = '삭제하였습니다.';
         res.render('machine/machine_jade/043-1_S_notice_List1_machine', {title: 'Ylease'});
     });
 };

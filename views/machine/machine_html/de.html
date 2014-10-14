@@ -62,10 +62,13 @@
                 content.value = message.content;
                 var up = [];
                 existExtArray = message.file.split('*');
+
                 for (var i=0; i < existExtArray.length-1; i++) {
-                    $("#download").append("<button type='submit' id='up"+i+"' name='up'>"+i+"</button>");
+                    var j = existExtArray[i].substring(90);
+                    $("#download").append("<button type='submit' id='up"+i+"' name='up'>"+j+"</button>");
                     up[i] = document.getElementById('up'+i);
                     up[i].value = existExtArray[i];
+
                 }
             });
         });

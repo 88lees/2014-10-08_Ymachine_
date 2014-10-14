@@ -45,10 +45,23 @@
 
     <script>
         function btn_click1() {
+            window.location.href = "/notice_List11";
+
+        };
+        function btn_click2() {
             var url = window.location.href;
             var id = url.indexOf('?');
             var send = url.slice(id + 4);
-            window.location.href = "/notice_write111?id=" + send;
+            window.location.href="/notice_su?id="+send;
+
+        };
+        function btn_click3() {
+            var url = window.location.href;
+            var id = url.indexOf('?');
+            var send = url.slice(id + 4);
+            $.post('/deleteboard3', {id: send}, function (data) {
+                window.location.href="/notice_List11";
+            });
 
         };
     </script>
@@ -77,7 +90,7 @@
 </div>
 
 
-<div class="container cont01">
+<div class="container cont01" style="width: 930px;">
     <div class="row clearfix tb01">
         <div class="col-md-12 column">
             <h3><img src="img/menu_icon_01.png"> 공지사항</h3>
@@ -111,8 +124,8 @@
                                 <ul class="list-unstyled">
                                     &nbsp;
                                     <div class="thumb_box">
-                                        <!--<div id="addedFormListDiv"></div>-->
-                                        <form action="/download" method="post">
+                                        <input type="hidden" id="id">
+                                        <form action="/download"  method="post" >
                                             <div id="download"></div>
                                         </form>
                                     </div>
@@ -131,26 +144,20 @@
     <div class="row clearfix tb01">
         <div class="col-md-12 column">
             <div class="btn-group pull-right">
-                <a href="/notice_List11" id="liston">
-                    <button type="button" class="btn btn-write">
+                    <button type="button" onclick="btn_click1()" class="btn btn-primary" style="margin-right: 5px;">
                         목록
                     </button>
-                </a>
 
-                <form role="form" id="" action="/kang" method="post">
-                    <button type="button" onclick="btn_click1()" class="btn btn-write">
+                <!--<form role="form" id="" action="/kang" method="post">-->
+                    <button type="button" onclick="btn_click2()" class="btn btn-danger" style="margin-right: 5px;">
                         수정
                     </button>
-                </form>
 
-                <h1></h1>
-
-                <form role="form" id="" action="/deleteboard3" method="post">
-                    <button type="submit" class="btn btn-write">
+                    <button type="submit" onclick="btn_click3()" class="btn btn-danger">
                         삭제
                     </button>
-                    <input type="hidden" class="form-control input-sm" name="id" id="id"/>
-                </form>
+
+
             </div>
         </div>
     </div>
@@ -172,7 +179,8 @@
             var up = [];
             existExtArray = message.file.split('*');
             for (var i=0; i < existExtArray.length-1; i++) {
-                $("#download").append("<button type='submit' id='up"+i+"' name='up'>"+i+"</button>");
+                var j = existExtArray[i].substring(90);
+                $("#download").append("<button type='submit' id='up"+i+"' name='up'>"+j+"</button>");
                 up[i] = document.getElementById('up'+i);
                 up[i].value = existExtArray[i];
             }

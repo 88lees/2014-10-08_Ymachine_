@@ -62,7 +62,6 @@
                 $('#liston').empty();
                 $(pagedItem).each(function (i) {
                     var id = this.id;
-                alert(i);
 
 
                     var title = this.title;
@@ -122,7 +121,7 @@
 
 <!--공지사항-->
 <div class="container cont01">
-    <div class="row clearfix">
+    <div class="row clearfix center-block" style="width: 930px;">
         <div class="col-md-12 column">
             <h3><img src="img/menu_icon_01.png"> 공지사항</h3>
             <table class="table table-bordered table-condensed">
@@ -138,18 +137,19 @@
 
                 </tbody>
             </table>
+
+
             <div class="pagination pull-right">
                 <div id="page-selection"></div>
             </div>
 
-
-
-            <div class="pull-right">
-                <a href="/notice_write11">
-                    <button type="button" class="btn btn-write">
-                        글쓰기
-                    </button></a></div>
-
+        </div>
+        <div class="pull-right">
+            <a href="/notice_write11">
+                <button type="button" class="btn btn-primary" style="margin-top: 39px; margin-right: 10px;">
+                    글쓰기
+                </button>
+            </a>
         </div>
     </div>
 </div>

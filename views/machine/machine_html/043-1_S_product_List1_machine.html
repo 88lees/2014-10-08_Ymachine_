@@ -68,7 +68,7 @@
             category2_code = category2_code[1];
 
 
-            $.post('/newcontentimg', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창 (10-10)
+            $.post('/newcontent', {category1_code: category1_code, category2_code: category2_code}, function (data) {      // 컨텐츠 중앙창 (10-10)
                 items = data.sending;
                 make_content();
                 pagenation(items.length / 5);

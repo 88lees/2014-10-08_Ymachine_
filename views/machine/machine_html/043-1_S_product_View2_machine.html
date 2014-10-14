@@ -105,8 +105,8 @@
                     for (var j = 0; j < items.length; j++) {
                         $("#liston").append("<div class='panel panel-default'><div class='panel-heading'>" +
                                 "<a class='panel-title collapsed' data-toggle='collapse' data-parent='#panel-780726' href="+'#panel-element-10'+j+">" + items[j].product_model_name + "</a></div>"+
-                                "<div class='panel-collapse collapse' id="+'panel-element-10'+j+"><div class='panel-body'>" +
-                                items[j].product_model_option+"</div></div></div>");
+                                "<div class='panel-collapse collapse' id="+'panel-element-10'+j+"><div class='panel-body'><textarea class='form-control' id='content' rows='10' readonly='readonly'>"+items[j].product_model_option+"</textarea>"+
+                                "</div></div></div>");
                     }}
 
                 $.post('/usedetailimg', {code1 :category1_code, code2 : category2_code , code3 : category3_code}, function (data) {

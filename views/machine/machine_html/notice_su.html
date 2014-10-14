@@ -30,11 +30,130 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
+    <script>
+        var fileCount = 1;
+        var fileNameCount = 1;
+        var addFormCount = 3;
+
+
+        function selectFile(thisObj, value) {
+            var addedFormList = document.getElementById("addedFormListDiv");
+            var ua = window.navigator.userAgent;
+            //파일업로드 금지 파일 추가 html,htm,jsp,js,asp,aspx,css,
+            if (!/(\.gif|\.jpg|\.jpeg|\.png)$/i.test(thisObj.value)) {
+                alert("이미지 형식의 파일을 선택하십시오");
+                //폼 초기화
+                document.getElementById(value).outerHTML = document.getElementById(value).outerHTML;
+                return;
+            }
+
+            var ary = thisObj.value.split('\\');
+            var fileName = ary[ary.length - 1];
+            var filePath = thisObj.value.replace(/\\/gi, "&");
+
+
+            /*     if(document.getElementById(value+"LIST")!=undefined){   //기존선택한걸 선택할때
+             addedFormList.removeChild(document.getElementById(value+"LIST"));
+             }else{    */
+
+            if (fileCount > addFormCount) {
+                alert("업로드는 " + addFormCount + "개 이상 할 수 없습니다" + value);
+                document.getElementById(value).outerHTML = document.getElementById(value).outerHTML;
+                return;
+            }
+
+            document.getElementById(value).style.display = "none";
+            addForm();
+
+
+            if (ua.indexOf("MSIE") > -1) {//ie일때
+
+                str = "<a href='javascript:del(" + value + ")'>삭제</a> " + fileName + "  <a href='javascript:addLink('" + filePath + "')'>본문에넣기</a> ";
+            } else {
+                str = "<a href='javascript:del(" + value + ")'>삭제</a> " + fileName;
+            }
+            var addFileList = document.createElement("div"); // 폼 생성
+
+            addFileList.id = value + "LIST"; // 폼 Div에 ID 부 여 (삭제를 위해)
+            addFileList.innerHTML = str; // 폼 Div안에 HTML삽입
+            addedFormList.appendChild(addFileList); // 삽입할 DIV에 생성한 폼 삽입
+
+        }
+
+        function addForm() {
+
+            var addedFormDiv = document.getElementById("addedFormDiv");
+
+            var date = new Date();
+            var file = date.getTime();
+
+            var str = "";
+
+            str = "<input type=file id=" + fileNameCount + " name=file" + "[" + fileNameCount + "]" + " onChange='javascript:selectFile(this," + fileNameCount + ")'>";
+
+
+            var addedDiv = document.createElement("div"); // 폼 생성
+            addedDiv.id = "div" + fileNameCount; // 폼 Div에 ID 부 여 (삭제를 위해)
+            addedDiv.innerHTML = str; // 폼 Div안에 HTML삽입
+
+            var dd = document.getElementById(fileCount);
+
+            addedFormDiv.appendChild(addedDiv); // 삽입할 DIV에 생성한 폼 삽입
+
+            //style="position:absolute; opacity:0;"
+            //이전폼값을 지운다
+
+            fileNameCount = fileNameCount + 1;
+            fileCount = fileCount + 1;
+            /*             if (fileCount>1){
+             alert("1111");
+             } */
+        }
+        function del(value) {
+
+            var addedFormDiv = document.getElementById("addedFormDiv");
+            var addedDiv = document.getElementById("div" + value);
+
+            var addedFormList = document.getElementById("addedFormListDiv");
+
+            addedFormDiv.removeChild(addedDiv); // 폼 삭제
+
+            if (document.getElementById("addedFormDiv").childNodes.length == 0) {
+                addForm();
+
+            }
+            /*   if(fileCount==1){
+             addedFormList.removeChild(document.getElementById("fileinput"+"LIST"));
+             fileCount = fileCount-1;
+             }else{ */
+            addedFormList.removeChild(document.getElementById(value + "LIST"));
+            fileCount = fileCount - 1;
+
+        }
+
+        $('#used').on('submit', function (event) {
+            $('#used').submit();
+        });
+        $('#reqList').on('submit', function (event) {
+            $('#reqList').submit();
+        });
+        var chkout = function () {
+            sessionStorage.setItem('name', '');
+            sessionStorage.setItem('role', '');
+            history.back();
+        };
+        $(document).ready(function () {
+            if (sessionStorage.getItem('name') == null || sessionStorage.getItem('name') == '') {
+            } else {
+                $('#listsee').append("<button type='submit' class='btn btn-primary pull-right' style='margin-right: 5px;'>리스트</button>");
+            }
+        });
+    </script>
 </head>
 
 <body>
 <div class="navbar-sub">
-    <div class="container">
+    <div class="container" >
         <div class="col-md-12 column">
             <ul class="list-inline pull-right">
                 <li>
@@ -50,10 +169,10 @@
         </div>
     </div>
 </div>
-<form role="form" id="used" action="/updateboard" method="post">
+<form role="form" id="used" action="/updateboard3" method="post">
 <div class="container cont01">
     <div class="row clearfix tb01">
-        <div class="col-md-12 column">
+        <div class="col-md-12 column center-block" style="width: 900px;">
             <h3><img src="img/menu_icon_01.png"> 공지사항</h3>
             <table class="table table-bordered">
                 <tbody>
@@ -78,23 +197,37 @@
                 <tr>
                     <th> 첨부파일 </th>
                     <td colspan="3">
-                        <input type="file" id="#" />
+                        <div class="myfilelist">
+                            <div id="addedFormDiv">
+                                <div id="div0">
+                                    <input type="File" name="file[0]" id="0"
+                                           onchange="selectFile(this,this.id);">
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                                &nbsp;
+                                <div class="thumb_box">
+                                    <div id="addedFormListDiv"></div>
+                                </div>
+                                &nbsp;
+                            </ul>
+                        </div>
                     </td>
                 </tr>
 
                 </tbody>
             </table>
         </div>
-    </div>
-    <!--카테고리 편집 버튼-->
-        <button type="submit" class="btn btn-write pull-right">
-            수정
+        <!--카테고리 편집 버튼-->
+        <button type="button" onclick="btn_click1()" class="btn btn-primary pull-right" style="margin-right: 149px;">
+            리스트
+        </button>
+        <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px;">
+            등록
         </button>
     </div>
+    </div>
     </form>
-    <button type="button" class="btn btn-write pull-right">
-        목록
-    </button>
 </div>
 <div class="col-md-1 column navbar-fixed-bottom visible-lg visible-md">
     <div class="panel panel-default quick">
@@ -154,13 +287,17 @@
         var url = window.location.href;
         var id = url.indexOf('?');
         var send = url.slice(id + 4);
-        $.post('/getboard', {id: send}, function (data) {
+        $.post('/getboard3', {id: send}, function (data) {
             var message = data.sending[0];
             title.value = message.title;
             content.value = message.content;
             id2.value = send;
         });
     });
+    function btn_click1() {
+        window.location.href = "/notice_List11";
+
+    };
 </script>
 </body>
 </html>
